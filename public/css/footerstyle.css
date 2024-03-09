@@ -1,0 +1,75 @@
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    @media only screen and (max-width: 600px) {
+        padding: 48px 65px 28px 65px ;
+    }
+}
+
+.footer-container {
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    @media only screen and (max-width: 600px) {
+        flex-direction: column;
+    }
+}
+
+.footer-question{
+    margin-right: 10px;
+}
+
+.footer-tel {
+    margin-left: 20px;
+}
+
+.footer-left {
+    width: 49%;
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.footer-right {
+    width: 49%;
+    @media only screen and (max-width: 600px) {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+.footer-divider {
+    color: white;
+    font-size: 20px;
+    @media only screen and (max-width: 600px) {
+        display: none;
+    }
+}
+
+.footer-line {
+    width: 80%; 
+    height: 1px;
+    background-color: white;
+    margin: 10px auto; 
+    @media only screen and (max-width: 600px) {
+        width: 100%; 
+    }
+}
+
+.footer-copyright {
+    font-size: 12px;
+    color: #AAAAAA;
+}
+
+.mb-only {
+    display: none;
+    @media only screen and (max-width: 600px) {
+        display: block; 
+    }
+}

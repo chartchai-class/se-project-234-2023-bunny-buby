@@ -9,7 +9,6 @@ app.get("/", (req, res) => {
     res.render("webStore/login");
 })
 
-
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)
 })
