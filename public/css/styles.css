@@ -1,0 +1,23 @@
+
+
+/* Adjust the image size in the dropdown */
+.profile-image {
+    width: 40px; /* Set your preferred width */
+    height: 40px; /* Set your preferred height */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio */
+    border-radius: 50%; /* Optional: Round the corners for a circular image */
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    font-weight: 1000;
+}
+
+.navbar-nav .nav-link {
+    font-size: 25px;
+}
