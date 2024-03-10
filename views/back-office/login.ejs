@@ -6,8 +6,54 @@
     <title>Login</title>
 
     <%- include('../partials/head_backOffice')  %>
+    <link rel="stylesheet" href="css/login_signUp.css">
+
+    <style>
+        p:nth-of-type(1) {
+            font-size: 4vw;
+            font-weight: 1000;
+            margin: 8vw 0 8vw 0;
+        }
+
+        .btn {
+            margin: 3.5vw 0 9vw 0;
+        }
+
+        @media (min-width: 768px) {
+            p:nth-of-type(1) {
+                font-size: 2.5vw;
+                font-weight: 1000;
+                margin: 3vw 0 3vw 0;
+            }
+
+            input {
+                margin-bottom: 2vw;
+                width: 22vw;
+                height: 2vw;
+                font-size: 1.5vw;
+            }
+
+            .btn {
+                margin: 1.5vw 0 5vw 0;
+                font-size: 1.5vw;
+                padding: 0.3vw 2vw;
+            }
+        }
+    </style>
 </head>
 <body>
-    <%- include('../partials/navbar_backOffice')  %>
+    <div class="container">
+        <div class="circle">
+            <img src="image/logo.png" alt="logo_img">
+        </div>
+        <p><%= text %></p>
+        <% forms.forEach((form) => { %>
+            <div>
+                <input type="text" placeholder="   <%= form.topic%>">
+            </div>
+        <% }); %>
+        <a href="" class="btn"><%= button%></a>
+        <p>Don't have an account?<a href="signUp"> Sign Up</a></p>
+    </div>
 </body>
 </html>
