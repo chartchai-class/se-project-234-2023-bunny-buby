@@ -39,17 +39,18 @@ app.get('/signUp', (req, res) => {
 })
 
 app.get('/myCategory', (req, res) => {
-    res.render('back-office/myProduct');
+    res.render('back-office/myCategory', { currentPage: 'myCategory' });
 })
 
 app.get('/myProduct', (req, res) => {
-    res.render('back-office/myProduct');
+    res.render('back-office/myProduct', { currentPage: 'myProduct' });
 })
 
 app.get('/billSummary', (req, res) => {
-    res.render('back-office/billSummary');
+    res.render('back-office/billSummary', { currentPage: 'billSummary' });
 })
 
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)
 })
+

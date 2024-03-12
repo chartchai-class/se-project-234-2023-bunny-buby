@@ -1,0 +1,169 @@
+body {
+    background-color: white;
+    font-family: 'Catamaran';
+}
+
+.logo-icon-small, .profile-icon {
+    display: none;
+}
+
+/* Adjust the image size in the dropdown */
+.profile-image {
+    width: 3vw; /* Set your preferred width */
+    height: 3vw; /* Set your preferred height */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio */
+    border-radius: 50%; /* Optional: Round the corners for a circular image */
+}
+
+.logo-image {
+    width: 5vw; /* Set your preferred width */
+    height: 5vw; /* Set your preferred height */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio */
+    border-radius: 50%; /* Optional: Round the corners for a circular image */
+}
+
+.navbar {
+    --bs-navbar-toggler-icon-bg: url(https://upload.wikimedia.org/wikipedia/commons/5/59/Hamburger_icon_white.svg);
+}
+
+
+.navbar-nav .nav-item {
+    padding-left: 2vw; /* Adjust the left padding as needed */
+}
+
+.nav-item.dropdown {
+    padding: 0 1vw 0 1vw;
+}
+
+.navbar-brand {
+    font-size: 30px;
+    font-weight: 1000;
+    color: white;
+    font-family: cata; /* Change 'Your Desired Font' to the font you want to use */
+    margin: 0;
+}
+
+.navbar-nav .nav-link {
+    font-size: 2vw;
+    font-family: 'Catamaran'; /* Change 'Your Desired Font' to the font you want to use */
+    color: white;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.active:focus {
+    color: gray; /* Set the color for active state */
+    background-color: transparent; /* Remove any background color */
+}
+
+.navbar-nav .nav-link.active:hover {
+    color: #FFB000;
+}
+
+.nav-divider {
+    color: white;
+    padding: 0 10px; /* Adjust the left and right padding as needed */
+    border-right: 0.2vw solid white; /* Add a border on the right side */
+}
+
+.dropdown-menu {
+    font-size: 1.5vw;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 0;
+}
+
+.bg-custom {
+    background-color: black;
+    position: relative;
+    padding: 0;
+    top: 15px;
+}
+
+.yellow-line {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px; /* Set the height of the colored padding */
+    background-color: #FFB000; /* Set the color of the padding */
+}
+
+/* .navbar-toggler .navbar-toggler-icon {
+    background-color: white;
+} */
+
+@media only screen and (max-width: 767px) {
+    /* Adjust styles for small screens */
+    .container-fluid {
+        padding: 2vw 0 2vw 0;
+    }
+
+    .navbar-toggler {
+        order: -1; /* Move the toggle button to the left-most side */
+    }
+
+    .navbar-toggler-icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+
+
+    .logo-image, .nav-item.dropdown {
+        display: none;
+    }
+
+
+    .navbar-nav .nav-item {
+        padding-left: 4vw;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 4vw;
+        padding-left: 4vw;
+    }
+
+    .nav-item.dropdown {
+        padding: 0; /* Remove padding for small screens */
+    }
+
+    .profile-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        object-fit: cover; /* Ensure the image maintains its aspect ratio */
+        border-radius: 50%; /* Optional: Round the corners for a circular image */
+        padding-right: 4vw;
+        position: absolute;
+        right: 0;
+    }
+
+    .profile-image {
+        width: 7vw; /* Set your preferred width */
+        height: 7vw; /* Set your preferred height */
+        object-fit: cover; /* Ensure the image maintains its aspect ratio */
+        border-radius: 50%; /* Optional: Round the corners for a circular image */
+    }
+
+    .logo-icon-small {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        object-fit: cover; /* Ensure the image maintains its aspect ratio */
+        border-radius: 50%; /* Optional: Round the corners for a circular image */
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logo-image-small {
+        width: 10vw; /* Set your preferred width */
+        height: 10vw; /* Set your preferred height */
+        object-fit: cover; /* Ensure the image maintains its aspect ratio */
+        border-radius: 50%; /* Optional: Round the corners for a circular image */
+    }
+}
