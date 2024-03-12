@@ -6,8 +6,12 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
-    res.render("webStore/login");
+    res.render("WebStore/login");
 })
+
+app.get("/signup", (req, res) => {
+    res.render("WebStore/signup");
+});
 
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)

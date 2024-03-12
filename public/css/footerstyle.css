@@ -40,7 +40,7 @@ footer {
     @media only screen and (max-width: 600px) {
         width: 100%;
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 }
 
@@ -55,7 +55,7 @@ footer {
 .footer-line {
     width: 80%; 
     height: 1px;
-    background-color: white;
+    background-color: #AAAAAA;
     margin: 10px auto; 
     @media only screen and (max-width: 600px) {
         width: 100%; 
@@ -63,6 +63,7 @@ footer {
 }
 
 .footer-copyright {
+    margin-top: 30px;
     font-size: 12px;
     color: #AAAAAA;
 }
