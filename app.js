@@ -13,6 +13,10 @@ app.get("/signup", (req, res) => {
     res.render("WebStore/signup");
 });
 
+app.get("/back-office/welcome", (req, res) => {
+    res.render("back-office/welcome");
+});
+
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)
 })
