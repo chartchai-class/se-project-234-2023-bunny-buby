@@ -6,9 +6,35 @@
     <title>My Category</title>
 
     <%- include('../partials/head_backOffice')  %>
+    <link rel="stylesheet" href="css/mainStyle.css">
 </head>
 <body>
     <%- include('../partials/navbar_backOffice')  %>
+    <section id="container-fluid">
+        <div class="row area1">
+            <div class="col-lg-6 col-sm-12"><h1><%= article %></h1></div>
+            <div class="col-lg-6 col-sm-12"><a href="" class="btn"><%= button %></a></div>
+        </div>
+        <div class="row area2">
+            <% categories.forEach((category) => { %>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="category">
+                        <div>
+                            <h3><%= category.name%></h3>
+                            <a href="" class="edit-icon">edit</a>
+                            <a href="" class="delete-icon">delete</a>
+                        </div>
+                        <div><p><%= category.id%></p></div>
+                        <div>
+                            <p>Sub</p>
+                            <p>Total: <%= category.total%></p>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+    <%- include('../partials/navbarScript_backOffice')  %>
 </body>
 </html>
 

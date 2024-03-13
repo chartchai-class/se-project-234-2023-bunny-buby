@@ -39,7 +39,20 @@ app.get('/signUp', (req, res) => {
 })
 
 app.get('/myCategory', (req, res) => {
-    res.render('back-office/myCategory', { currentPage: 'myCategory' });
+    categories = [
+        {name: 'Name of Category', id: 'Id of Category', total: '4'},
+        {name: 'Name of Category', id: 'Id of Category', total: '4'},
+        {name: 'Name of Category', id: 'Id of Category', total: '4'},
+        {name: 'Name of Category', id: 'Id of Category', total: '4'},
+        {name: 'Name of Category', id: 'Id of Category', total: '4'},
+        {name: 'Name of Category', id: 'Id of Category', total: '4'}
+    ]
+    res.render('back-office/myCategory', { 
+        currentPage: 'myCategory' ,
+        article: 'My Category',
+        button: 'Create new category',
+        categories: categories
+    });
 })
 
 app.get('/myProduct', (req, res) => {

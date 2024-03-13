@@ -1,0 +1,87 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #EEEEEE;
+}
+
+#container-fluid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    top: 15px;
+}
+
+.area1 {
+    padding: 3.5vw 7vw 2vw 7vw; /* Adjust padding */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.area2 {
+    flex-grow: 1;
+    padding: 0 7vw 2vw 7vw; /* Adjust padding */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.area1 .col-lg-6 {
+    height: 6vw;
+    position: relative;
+}
+
+.area2 .col-lg-6 {
+    height: auto; /* Adjust height to accommodate content */
+}
+
+.category {
+    background-color: white;
+    padding: 2vw;
+    margin-bottom: 20px;
+    height: 100%;
+}
+
+.area1 h1 {
+    font-size: 2.5vw; /* Adjust font size */
+    font-weight: 1000;
+}
+
+.area1 .btn {
+    padding: 0.5vw;
+    text-decoration: none;
+    font-size: 2vw;
+    background-color: black;
+    color: white;
+    font-weight: 800;
+    width: 25vw;
+    height: 3.5vw;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    right: 12px;
+}
+
+@media only screen and (max-width: 767px) {
+    .area2,
+    .area1 {
+        padding: 5vw; /* Adjust padding for smaller screens */
+    }
+
+    .container {
+        height: auto; /* Allow height to adjust */
+    }
+
+    .area1 h1 {
+        font-size: 6vw; /* Adjust font size for smaller screens */
+    }
+
+    .area1 .btn {
+        font-size: 4vw; /* Adjust font size for smaller screens */
+        width: 60vw; /* Adjust width for smaller screens */
+    }
+}
