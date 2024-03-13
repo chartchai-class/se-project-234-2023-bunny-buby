@@ -9,6 +9,10 @@ app.get("/", (req, res) => {
     res.render("WebStore/login");
 })
 
+app.get("/WebStore/contact", (req, res) => {
+    res.render("WebStore/contact");
+});
+
 app.get("/signup", (req, res) => {
     res.render("WebStore/signup");
 });
