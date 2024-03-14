@@ -13,21 +13,28 @@
     <section id="container-fluid">
         <div class="row area1">
             <div class="col-lg-6 col-sm-12"><h1><%= article %></h1></div>
-            <div class="col-lg-6 col-sm-12"><a href="" class="btn"><%= button %></a></div>
+            <div class="col-lg-6 col-sm-12 btn-area"><a href="" class="btn"><%= button %></a></div>
         </div>
         <div class="row area2">
             <% categories.forEach((category) => { %>
                 <div class="col-lg-6 col-sm-12">
                     <div class="category">
-                        <div>
+                        <div class="category-sec1">
                             <h3><%= category.name%></h3>
-                            <a href="" class="edit-icon">edit</a>
-                            <a href="" class="delete-icon">delete</a>
+                            <div class="icon">
+                                <a href="" class="edit-icon"><img src="image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a>
+                                <a href="" class="delete-icon"><img src="image/red-bin.svg" alt="red-bin"></a>
+                            </div>
                         </div>
-                        <div><p><%= category.id%></p></div>
-                        <div>
-                            <p>Sub</p>
-                            <p>Total: <%= category.total%></p>
+                        <div class="category-sec2"><p class="category-id"><%= category.id%></p></div>
+                        <div class="category-sec3">
+                            <div class="sub"><p>Sub</p></div>
+                            <div><p>Total: <%= category.total%></p></div>
+                        </div>
+                        <div class="category-sec4">
+                            <% category.sub.forEach((sub) => { %>
+                                <a href="" class="sub-btn"><%= sub.name %></a>
+                            <% }); %>
                         </div>
                     </div>
                 </div>

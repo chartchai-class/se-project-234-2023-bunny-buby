@@ -39,14 +39,22 @@ app.get('/signUp', (req, res) => {
 })
 
 app.get('/myCategory', (req, res) => {
-    categories = [
-        {name: 'Name of Category', id: 'Id of Category', total: '4'},
-        {name: 'Name of Category', id: 'Id of Category', total: '4'},
-        {name: 'Name of Category', id: 'Id of Category', total: '4'},
-        {name: 'Name of Category', id: 'Id of Category', total: '4'},
-        {name: 'Name of Category', id: 'Id of Category', total: '4'},
-        {name: 'Name of Category', id: 'Id of Category', total: '4'}
+    subs = [
+        {name: "Sub's name"},
+        {name: "Sub's name"},
+        {name: "Sub's name"},
+        {name: "Sub's name"}
     ]
+
+    categories = [
+        {name: 'Name of Category', id: 'Id of Category', total: '4', sub: subs},
+        {name: 'Name of Category', id: 'Id of Category', total: '4', sub: subs},
+        {name: 'Name of Category', id: 'Id of Category', total: '4', sub: subs},
+        {name: 'Name of Category', id: 'Id of Category', total: '4', sub: subs},
+        {name: 'Name of Category', id: 'Id of Category', total: '4', sub: subs},
+        {name: 'Name of Category', id: 'Id of Category', total: '4', sub: subs}
+    ]
+
     res.render('back-office/myCategory', { 
         currentPage: 'myCategory' ,
         article: 'My Category',
