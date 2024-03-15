@@ -49,6 +49,9 @@ body {
 }
 
 .area1 .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0.5vw;
     text-decoration: none;
     font-size: 2vw;
@@ -192,7 +195,7 @@ body {
 
     .area1 .btn {
         height: 7vw;
-        font-size: 5.6vw; /* Adjust font size for smaller screens */
+        font-size: 4vw; /* Adjust font size for smaller screens */
         width: 100%; /* Adjust width for smaller screens */
         height: auto;
         position: static; /* Remove absolute positioning */

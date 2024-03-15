@@ -15,6 +15,25 @@
     <style>
         .twoButton {
             margin-top: 2vw;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .twoButton .btn {
+            padding: 1vw 3.5vw;
+            text-decoration: none;
+            font-size: 2vw;
+            background-color: black;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 2vw;
+        }
+
+        .sBtn-text {
+            margin-left: 2vw;
         }
 
         @media (min-width: 768px) {
@@ -30,16 +49,56 @@
 
             .twoButton {
                 display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
+                height: 3.5vw;
             }
 
-            .area1 .btn {
+            .twoButton .btn {
                 position: relative;
             }
         }
 
         @media only screen and (max-width: 767px) {
+            .twoButton {
+                margin-top: 3vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .select-menu {
+                width: 100%;
+            }
+
+            .sBtn-text {
+                margin-left: 4vw;
+            }
+
+            .select-menu .select-btn {
+                width: 100%;
+                height: 6vw;
+                padding: 1vw;
+                font-size: 4vw;
+                font-weight: 500;
+                border: solid 0.4vw grey;
+                border-radius: 1vw;
+                cursor: pointer;
+                position: relative;
+            }
+
+            .categoryBtn {
+                width: 100%;
+            }
+
+            .twoButton .btn {
+                margin-top: 5vw;
+                height: 7vw;
+                font-size: 3.8vw;
+                width: 100%;
+                height: auto;
+                margin-left: 0;
+            }
+
             .product h3 {
                 font-size: 5vw;
             }
@@ -73,7 +132,7 @@
             <div class="article"><h1><%= article %></h1></div>
             <div class="twoButton">
                 <%- include('../partials/selectMenu_backOffice')  %>
-                <a href="" class="btn"><%= button %></a>
+                <div class="categoryBtn"><a href="" class="btn"><%= button %></a></div>
             </div>
         </div>
         <div class="row area2">
@@ -134,4 +193,4 @@
         });
     </script>
 </body>
-</html>
+</html> 
