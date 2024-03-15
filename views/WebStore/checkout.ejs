@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <%- include('../partials/header_front'); %>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    background-color: #F5F5DC;
+    font-family: "Catamaran", sans-serif;
+}
+
+/* header section */
+.header-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(10rem, 1fr));
+}
+
+@media screen and (max-width: 600px) {
+    .header-container {
+        grid-template-columns: minmax(10rem, 1fr);
+    }
+    .header-container > div:nth-child(2) {
+    display: none;
+    }
+}
+
+/* thanks section */
+.thanks{
+    background-color: white;
+    margin: 0 275px 0 275px;
+    @media screen and (max-width: 600px){
+        margin: 0 40px 0 40px;
+    }
+}
+
+.thanks-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    @media screen and (max-width: 600px) {
+        padding: 90px 20px 90px 20px;
+    }
+}
+
+.content {
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 2.7em;
+    margin: 0 40px 40px 40px;
+    /* padding: 0 40px 0 40px; */
+    font-weight: bold;
+    @media screen and (max-width: 600px) {
+        margin: 0 0 20px 0;
+        font-size: 1.55em; 
+    }
+}
+
+.content p {
+    font-size: 1.45em;
+    margin: 0 0 10px 0;
+    @media screen and (max-width: 600px) {
+        margin: 0 10px 10px 10px;
+        font-size: 1.1em;
+    }
+}
+
+
+#continueButton {
+    width: 350px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 60px 0 60px 0;
+    padding: 10px 20px;
+    background-color: #FFB000;
+    color: white;
+    cursor: pointer;
+    border: 0;
+    @media screen and (max-width: 600px) {
+        margin: 20px 0;
+        width: 200px;
+        height: 45px;
+        font-size: 17px;
+    }
+}
+
+#continueButton:hover {
+    background-color: #d58e24;
+}
+
+
+</style>
+
+</head>
+<body>
+    <%- include('../partials/navbar_front'); %>
+
+<!-- header section starts -->
+<header>
+
+    <div class="header-container">
+
+        <div class="new-arrival-box">
+          <img src="image/checkout/checkout-bg.jpg" style="width: 100%; height: 100%;">
+        </div>
+          
+        <div class="new-arrival-box">
+          <img src="image/checkout/checkout-bg.jpg" style="width: 100%; height: 100%;">
+        </div>
+    
+      </div>       
+    
+</header>
+<!-- header section ends -->
+
+<!-- thanks text section starts -->
+<section class="thanks" id="thanks">
+
+    <div class="thanks-container">
+        <div class="content">
+            <h1>Thank you for your purchase!</h1>
+            <p>We're grateful for your trust in us to provide quality sports equipment.</p>
+            <p>Enjoy your new gear and keep pushing your limits!</p>
+            <button id="continueButton" type="button">Continue Shopping</button>
+        </div>
+    </div>
+       
+
+</section>
+<!-- thanks text section ends -->
+
+
+
+
+
+
+
+
+
+
+    <%- include('../partials/footer_front'); %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("continueButton").addEventListener("click", function() {
+            window.location.href = "/WebStore/home";
+        });
+    </script>
+    
+    
+</body>
+</html>

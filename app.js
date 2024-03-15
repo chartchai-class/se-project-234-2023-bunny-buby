@@ -6,13 +6,20 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
-    res.render("webStore/home");
+    res.render("WebStore/home");
 })
+
+app.get("/WebStore/contact", (req, res) => {
+    res.render("WebStore/contact");
+});
 
 app.get("/signup", (req, res) => {
     res.render("WebStore/signup");
 });
 
+app.get("/WebStore/home", (req, res) => {
+    res.render("WebStore/home");
+});
 app.get("/back-office/welcome", (req, res) => {
     res.render("back-office/welcome");
 });
