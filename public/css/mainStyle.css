@@ -79,7 +79,7 @@ body {
     align-items: center;
 }
 
-.category h3 {
+.category h3, .product h3 {
     font-size: 1.9vw;
     font-weight: 700;
 }
@@ -117,6 +117,60 @@ body {
     border-radius: 50px;
 }
 
+.product-sec1 .icon, .product-sec3, .price-section {
+    display: flex;
+    justify-content: space-between; /* Ensure icons are spaced apart */
+    align-items: center;
+}
+
+.product-data {
+    width: calc(100% - 13vw);
+}
+
+.product-sec2 {
+    display: flex;
+    font-size: 1.125vw;
+    margin: 1vw 0 1vw 0;
+}
+
+.product-sec3 {
+    align-items: flex-start;
+}
+
+.product-img img {
+    width: 13vw;
+    height: auto;
+}
+
+.price, .price-promotion {
+    font-size: 1.5vw;
+    font-weight: 700;
+}
+
+.old-price {
+    font-size: 1.2vw;
+    font-weight: 700;
+    text-decoration: line-through solid 3px rgb(63, 63, 63);
+    margin-right: 0.4vw;
+}
+
+.price-promotion {
+    color: #D90000;
+    margin: 0;
+}
+
+.soldItems p {
+    font-size: 1.2vw;
+    font-weight: 700;
+    margin: 0;
+}
+
+.old-price p, .price-promotion p, .price p {
+    margin: 0;
+}
+
+
+
 @media only screen and (max-width: 767px) {
     .area2,
     .area1 {
@@ -146,7 +200,7 @@ body {
         right: auto; /* Remove right position */
     }
 
-    .category {
+    .category, .product {
         background-color: white;
         padding: 4vw;
         margin-bottom: 20px;
@@ -154,7 +208,7 @@ body {
         width: auto;
     }
 
-    .category h3 {
+    .category h3, .product-data h3 {
         font-size: 5vw; /* Adjust font size for smaller screens */
     }
 
@@ -181,7 +235,7 @@ body {
         padding-right: 3vw; /* Adjust padding for smaller screens */
     }
 
-    .icon img {
+    .icon img  {
         height: 5vw; /* Adjust edit and delete icon size for smaller screens */
         width: 5vw; /* Adjust edit and delete icon size for smaller screens */
     }

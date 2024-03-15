@@ -6,9 +6,132 @@
     <title>My Product</title>
 
     <%- include('../partials/head_backOffice')  %>
+    
+    <!--===== Boxicons CSS =====-->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="css/mainStyle.css">
+    <link rel="stylesheet" href="css/selectMenu.css">
+    <style>
+        .twoButton {
+            margin-top: 2vw;
+        }
+
+        @media (min-width: 768px) {
+            .row.same-line .col-lg-6 {
+                padding: 0;
+                margin: 0;
+            }
+
+            .row.same-line .col-lg-6  p{
+                margin-top: 0.8vw;
+                margin-bottom: 0.5vw;
+            }
+
+            .twoButton {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
+            .area1 .btn {
+                position: relative;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .product h3 {
+                font-size: 5vw;
+            }
+
+            .product-img img {
+                width: 30vw;
+            }
+
+            .product-sec2 {
+                font-size: 2.8vw;
+            }
+
+            .row.same-line .col-lg-6  p{
+                margin-bottom: 0.5vw;
+            }
+
+            .old-price, .soldItems p {
+                font-size: 3.4vw;
+            }
+
+            .price, .price-promotion {
+                font-size: 4vw;
+            }
+        }
+    </style>
 </head>
 <body>
     <%- include('../partials/navbar_backOffice')  %>
+    <section id="container-fluid">
+        <div class="row area1">
+            <div class="article"><h1><%= article %></h1></div>
+            <div class="twoButton">
+                <%- include('../partials/selectMenu_backOffice')  %>
+                <a href="" class="btn"><%= button %></a>
+            </div>
+        </div>
+        <div class="row area2">
+            <% products.forEach((product) => { %>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="product">
+                        <div class="product-sec1">
+                            <div class="icon">
+                                <div><a href="" class="delete-icon"><img src="image/red-bin.svg" alt="red-bin"></a></div>
+                                <div><a href="" class="edit-icon"><img src="image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
+                            </div>
+                        </div>
+                        <div class="product-sec2">
+                            <div class="product-img">
+                                <img src="<%= product.image %>" alt="product-image">
+                            </div>
+                            <div class="product-data">
+                                <h3><%= product.name %></h3>
+                                <div class="row same-line">
+                                    <div class="col-lg-6 col-sm-12"><p><b>ID of product:  </b><%= product.id %></p></div>
+                                    <div class="col-lg-6 col-sm-12"><p><b>ID of category:  </b><%= product.cateId %></p></div>
+                                </div>
+                                <p><b>Description:  </b> <%= product.des %></p>
+                            </div>
+                        </div>
+                        <div class="product-sec3">
+                            <div class="price-section">
+                                <% if (product.salesCount) { %>
+                                    <div class="old-price"><p>$<%= product.price %></p></div>
+                                    <div class="price-promotion"><p>$<%= product.pricePromotion %></p></div>
+                                <% } else { %>
+                                    <div class="price"><p>$<%= product.price %></p></div>
+                                <% } %>
+                            </div>
+                            <div class="soldItems"><p><%= product.soldItems %> items sold</p></div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+    <%- include('../partials/navbarScript_backOffice')  %>
+
+    <script>
+        const optionMenu = document.querySelector(".select-menu"),
+                selectBtn = optionMenu.querySelector(".select-btn"),
+                options = optionMenu.querySelectorAll(".option"),
+                sBtn_text = optionMenu.querySelector(".sBtn-text");
+    
+        selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
+    
+        options.forEach(option =>{
+            option.addEventListener("click", ()=>{
+                let selectedOption = option.querySelector(".option-text").innerText;
+                sBtn_text.innerText = selectedOption;
+                optionMenu.classList.remove("active");
+            });
+        });
+    </script>
 </body>
 </html>
-

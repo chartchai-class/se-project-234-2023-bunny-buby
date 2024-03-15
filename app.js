@@ -64,7 +64,20 @@ app.get('/myCategory', (req, res) => {
 })
 
 app.get('/myProduct', (req, res) => {
-    res.render('back-office/myProduct', { currentPage: 'myProduct' });
+    products = [
+        {name: 'Name of Product', image: 'image/home-products/nike.jpg', id: '00001', cateId: '11111A', des: 'This is a white shoe', price: '210', salesCount: '100', pricePromotion: '110', soldItems: '20'},
+        {name: 'Name of Product', image: 'image/home-products/nike.jpg', id: '', cateId: '', des: '', price: '210', salesCount: '', pricePromotion: '110', soldItems: '20'},
+        {name: 'Name of Product', image: 'image/home-products/nike.jpg', id: '', cateId: '', des: '', price: '210', salesCount: '', pricePromotion: '110', soldItems: '20'},
+        {name: 'Name of Product', image: 'image/home-products/nike.jpg', id: '', cateId: '', des: '', price: '210', salesCount: '100', pricePromotion: '110', soldItems: '20'},
+        {name: 'Name of Product', image: 'image/home-products/nike.jpg', id: '', cateId: '', des: '', price: '210', salesCount: '100', pricePromotion: '110', soldItems: '20'}
+    ]
+
+    res.render('back-office/myProduct', { 
+        currentPage: 'myProduct' ,
+        article: 'My Product',
+        button: 'Create new product',
+        products: products
+    });
 })
 
 app.get('/billSummary', (req, res) => {
