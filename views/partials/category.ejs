@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <%- include('../partials/header_front'); %>
+    <link rel="stylesheet" href="/css/categorystyle.css">
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">    
+</head>
+<body>
+    <%- include('../partials/navbar_front'); %>
+    <div class="container">
+        <!-- topic part -->
+        <div class="topic-category">
+            <%= categoryName %>
+            <hr>
+            <p class="topic-detail"> <%= productCount %> products </p>
+        </div>
+        <!-- product part -->
+        <!-- <div class="product-category">
+            <div class="box-container">
+                <div class="box">
+                    <a href="#"><img src="/image/home-products/nike.jpg" alt="nike"></a>
+                    <div class="product-tile-container">
+                        <div class="product-tile-info-text">
+                            <div class="product-tile-title">
+                                <h4>Nike</h4>
+                            </div>
+                            <div class="product-tile-category">
+                                <h4>Shoe</h4>
+                            </div>
+                        </div>
+                        
+                        <div class="product-tile-price">
+                            <div class="product-tile-price-new">
+                                <h4>$100</h4>
+                            </div>
+                            <div class="product-tile-price-old">
+                                <h4>$200</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+            
+
+
+    </div>
+
+    <%- include('../partials/footer_front'); %>
+</body>
+</html>

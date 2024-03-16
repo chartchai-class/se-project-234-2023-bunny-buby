@@ -2,6 +2,7 @@
     background-color: black;
     font-size: 20px;
     padding-top: 20px; 
+    padding-bottom: 10px;
     color: white;
 }
 
@@ -15,11 +16,122 @@
     background-color: #FFB000;
 }
 
-.nav-item, nav-link {
-    margin-top: 30px;
-    filter: invert(1);
+.nav-item, .nav-link {
+    margin-top: 10px;
+    font-family: "Catamaran", sans-serif;
+    color: white; /* Set color for normal state */
+}
+
+.nav-item a {
+    font-size: 20px;
+}
+
+.nav-item a:hover {
+    color: #FFB000;
+    text-decoration: underline;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav img {
+    filter: invert(1); /* Apply invert filter to make images white */
+}
+
+.form-inline {
+    width: 280px;
+    margin-right: 35px;
 }
 
 .form-control {
     background-color: gray;
+    border-radius: 3px;
+}
+
+.form-inline .form-control, .btn-outline-light.search-button {
+    border-color: transparent; /* Remove border color */
+    background: gray;
+}
+
+.basket-icon, .account-icon {
+    margin-right: 25px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.dropdown-menu {
+    margin-left: -140px;
+    width: 250px;
+}
+
+.dropdown-menu .account-image-container {
+    filter: invert(1);  /* make img black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.group-manage{
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .bg-custom {
+        background-color: black;
+        font-size: 20px;
+        padding-top: 30px; 
+        padding-bottom: 20px;
+        color: white;
+    }
+
+    .navbar-toggler {
+        order: -1; /* Move the toggler to the left */
+        filter: invert(1);
+    }
+
+    .navbar-brand {
+        position: absolute; /* Position the logo */
+        left: 50%; /* move it to the center horizontally */
+        transform: translateX(-50%); /* Adjust to center it perfectly */
+    }
+
+    .rightside {
+        display: none;
+    }
+
+    .align-items-center {
+        align-items: center !important;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .group-manage{
+        display: flex;
+    }
+
+    #mobileSearchButton {
+        margin-right: 7px;
+        filter: invert(1);
+    }
+
+    #mobileSearchInput {
+        position: absolute;
+        bottom: -35px;
+        right: 0;
+        width: 80%;
+        background-color: gray; 
+        border-top: 1px solid #ccc; 
+        padding: 5px;
+        display: none; /* Initially hidden */
+    }
+     
+    .basket-mb, .accout-mb{
+        filter: invert(1);
+        margin-right: 13px;
+    }
+    
 }

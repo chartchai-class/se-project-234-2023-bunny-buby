@@ -45,6 +45,16 @@ footer {
     }
 }
 
+.footer-right a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.footer-right a:hover{
+    text-decoration: underline;
+}
+
+
 .footer-divider {
     color: white;
     font-size: 20px;

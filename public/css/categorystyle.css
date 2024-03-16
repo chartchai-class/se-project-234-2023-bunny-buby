@@ -1,0 +1,40 @@
+body {
+    background-color: #F5F5DC;
+    font-family: "Catamaran", sans-serif;
+}
+
+.topic-category {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    font-size: 34px;
+}
+
+.topic-detail{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(10rem, 1fr));
+    gap: 1.5rem;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(2, minmax(10rem, 1fr));
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.box-container .box {
+    background: #fff;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    box-shadow: var(--box--shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }

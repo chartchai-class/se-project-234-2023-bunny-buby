@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <%- include('../partials/header_front'); %>
+    <link rel="stylesheet" href="/css/contactstyle.css">
+        <!-- font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">    
+</head>
+<body>
+    <%- include('../partials/navbar_front'); %>
+    <div class="container">
+        <div class="topic-contact">
+            Contact
+        </div>
+        <hr>
+        <div class="detail-contact">
+            <p>
+                Thank you for reaching out to us. Your time is valuable to us,
+                and we are dedicated to providing swift and accurate assistance to address your inquiries.
+            </p>
+            <p>
+                If you would like to return your item(s) or have any problems , please fill out the form <a href="#" class="scroll-to-form">here</a>.<br>
+                Our support team will email you the relevant documents within 3 business days.
+            </p>
+            <p>
+                If you wish to return your item(s) to our retail store, You can check from the map below.
+            </p>
+        </div>
+        <div id="map-contact"></div> <!-- Added div for the map -->
+        <hr>
+        <div id="question-container" class="question-container">
+            <div class="question">Order Related Information</div>
+            <div class="input-form">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-form">
+                <label for="orderNumber">Please provide us with your Order Number</label>
+                <input type="text" id="orderNumber" name="orderNumber" required>
+            </div>
+            <div class="input-form">
+                <label for="numProducts">How many products do you want to return?</label>
+                <input type="number" id="numProducts" name="numProducts" required step="1">
+            </div>
+            <div class="input-form">
+                <label for="generalQuestion">Are there any problems that you would like to improve?</label>
+                <input type="text" id="orderNumber" name="orderNumber" required>
+            </div>
+            <button id="questionButton" type="submit" onclick="showPopup()">Send</button>
+        </div>
+    </div>
+    <!-- Pop Up message -->
+    <div id="myPop-up" class="pop-up">
+        <!-- Popup content -->
+        <div class="popup-content">
+            <span class="close" onclick="hidePopup()">&times;</span>
+            <p>Your information has been sent!</p>
+            <p>Thanks for your collaboration! <br> We'll make it better.</p>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3p2vRsIk2zYi-WFfzrdWFJ5gI7Jg-KkQ&callback=initMap" async defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        var scrollToFormLinks = document.querySelectorAll(".scroll-to-form");
+            scrollToFormLinks.forEach(function(link) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    var formSection = document.querySelector(".question-container");
+                    formSection.scrollIntoView({ behavior: "smooth" });
+                });
+            });
+        });
+        // Initialize and add the map
+        function initMap() {
+            var shop = { lat: 18.800765161028007, lng: 98.95040413687555 };
+            var map = new google.maps.Map(document.getElementById("map-contact"),{
+                zoom: 16,
+                center: shop,
+            });
+
+            var marker = new google.maps.Marker({
+                position: shop,
+                map: map,
+                title: "BunnyBubyShop"
+            })
+        }
+
+        //input-form of 3rd question : can input only counting number
+        var numProductsInput = document.getElementById("numProducts");
+        numProductsInput.addEventListener("input", function(event) {
+            var value = parseInt(numProductsInput.value);
+            if (numProductsInput.value === "" || !Number.isInteger(value) || value < 1) {
+            numProductsInput.value = "";
+            }
+        });
+
+        //PopUp message
+        var purport = document.getElementById("myPop-up");
+        function showPopup() { //display pop-up
+            purport.style.display = "block";
+        }
+        function hidePopup() { //hide the pop-up
+            purport.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == purport) {
+                hidePopup();
+            }
+        };
+    </script>
+
+    <%- include('../partials/footer_front'); %>
+</body>
+</html>
