@@ -1,0 +1,290 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #EEEEEE;
+    font-style: normal;
+}
+
+.row {
+    --bs-gutter-x: 0;
+}
+
+#container-fluid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    position: relative;
+    top: 15px;
+}
+
+.area1 {
+    padding: 3.5vw 7vw 2vw 7vw; /* Adjust padding */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.area2 {
+    padding: 0 7vw 2vw 7vw; /* Adjust padding */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.area1 .col-lg-6 {
+    height: 6vw;
+    position: relative;
+}
+
+.area2 .col-lg-6 {
+    height: auto; /* Adjust height to accommodate content */
+}
+
+.area1 h1 {
+    font-size: 2.5vw; /* Adjust font size */
+    font-weight: 800;
+}
+
+.area1 .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vw;
+    text-decoration: none;
+    font-size: 2vw;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    width: 25vw;
+    height: 3.5vw;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+@media (min-width: 768px) {
+    .row.area2 .col-lg-6 {
+        background-color: white;
+        padding: 2vw;
+        margin-bottom: 20px;
+        height: 100%;
+        width: calc(50% - 10px);
+    }
+}
+
+.editCategory-area .category-sec1 input,
+.editCategory-area .category-sec2 input {
+    border: none;
+}
+
+.editCategory-area .category-sec1 input {
+    font-size: 1.9vw;
+    font-weight: 700;
+    width: 70%;
+}
+
+.editCategory-area .category-sec2 input {
+    font-size: 1.4vw;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    width: 60%;
+}
+
+.category-sec1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category h3, .product h3 {
+    font-size: 1.9vw;
+    font-weight: 700;
+}
+
+.category-id {
+    font-size: 1.4vw;
+    font-weight: 500;
+}
+
+.edit-icon img {
+    height: 1.6vw;
+    width: 1.6vw;
+    margin-right: 0.5vw;
+}
+
+.done-icon {
+    font-size: 1.5vw;
+    text-decoration: none;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: #31A043;
+    color: white;
+    font-weight: 500;
+    border: none;
+}
+
+.delete-icon img {
+    height: 2vw;
+    width: 2vw;
+}
+
+.category-sec3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: calc(1.2vw + 1.125vw);
+    padding-top: 1vw;
+    border-top: solid 2px #6565657e;
+}
+
+.category-sec3 p {
+    font-size: 1.2vw;
+    color: #FFB000;
+    font-weight: 800;
+}
+
+.category-sec3 .totalProduct  p {
+    font-size: 1.125vw;
+    text-decoration: none;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    background-color: #FFB000;
+    color: black;
+    font-weight: 500;
+    width: fit-content;
+    border-radius: 50px;
+}
+
+.category-sec3 .totalProduct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.product-sec1 .icon, .product-sec3, .price-section {
+    display: flex;
+    justify-content: space-between; /* Ensure icons are spaced apart */
+    align-items: center;
+}
+
+.product-data {
+    width: calc(100% - 13vw);
+}
+
+.product-sec2 {
+    display: flex;
+    font-size: 1.125vw;
+    margin: 1vw 0 1vw 0;
+}
+
+.product-sec3 {
+    align-items: flex-start;
+}
+
+.product-img img {
+    width: 13vw;
+    height: auto;
+}
+
+.price, .price-promotion {
+    font-size: 1.5vw;
+    font-weight: 700;
+}
+
+.old-price {
+    font-size: 1.2vw;
+    font-weight: 700;
+    text-decoration: line-through solid 3px rgb(63, 63, 63);
+    margin-right: 0.4vw;
+}
+
+.price-promotion {
+    color: #D90000;
+    margin: 0;
+}
+
+.soldItems p {
+    font-size: 1.2vw;
+    font-weight: 700;
+    margin: 0;
+}
+
+.old-price p, .price-promotion p, .price p {
+    margin: 0;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .area2,
+    .area1 {
+        padding: 5vw 8vw 2vw 8vw; /* Adjust padding for smaller screens */
+    }
+
+    .area1 h1 {
+        font-size: 6vw; /* Adjust font size for smaller screens */
+    }
+
+    .btn-area {
+        margin-top: 10vw;
+        height: auto; /* Change height to auto for responsiveness */
+        position: relative;
+        display: flex; /* Add display:flex */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+    }
+
+    .area1 .btn {
+        height: 7vw;
+        font-size: 4vw; /* Adjust font size for smaller screens */
+        width: 100%; /* Adjust width for smaller screens */
+        height: auto;
+        position: static; /* Remove absolute positioning */
+        bottom: auto; /* Remove bottom position */
+        right: auto; /* Remove right position */
+    }
+
+    .category, .product {
+        background-color: white;
+        padding: 4vw;
+        margin-bottom: 20px;
+        height: auto;
+        width: auto;
+    }
+
+    .category h3, .product-data h3 {
+        font-size: 5vw; /* Adjust font size for smaller screens */
+    }
+
+    .category-id {
+        font-size: 4vw;
+    }
+
+    .category-sec2 {
+        margin-bottom: 4vw;
+    }
+
+    .category-sec3 {
+        margin-top: 5vw;
+        height: 3vw;
+    }
+
+    .category-sec3 p {
+        font-size: 3.5vw; /* Adjust font size for smaller screens */
+    }
+
+    .category-sec4 .sub-btn {
+        font-size: 3.2vw; /* Adjust font size for smaller screens */
+        padding-left: 3vw; /* Adjust padding for smaller screens */
+        padding-right: 3vw; /* Adjust padding for smaller screens */
+    }
+
+    .icon img  {
+        height: 5vw; /* Adjust edit and delete icon size for smaller screens */
+        width: 5vw; /* Adjust edit and delete icon size for smaller screens */
+    }
+}

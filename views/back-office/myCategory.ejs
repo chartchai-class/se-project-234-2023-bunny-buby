@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Category</title>
+
+    <%- include('../partials/head_backOffice') %>
+        <link rel="stylesheet" href="css/back-office/mainStyle.css" />
+        <link rel="stylesheet" href="css/back-office/create_form.css" />
+</head>
+
+<body>
+    <%- include('../partials/header_backOffice') %>
+
+        <!-- create category -->
+        <div id="popupCreateForm" class="popup-Category">
+            <span class="close createCate"><img src="image/close-form.svg" alt="" /></span>
+            <h3>Create a new category?</h3>
+            <form action="/addCategory" method="post">
+                <input id="categoryID" name="categoryId" type="text" placeholder="Category ID" />
+                <input id="categoryName" name="categoryName" type="text" placeholder="Category Name" />
+
+                <div class="cancel-deleteBtn">
+                    <button id="cancelBtn-createCate">Cancel</button>
+                    <button id="createBtn-category" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+        <!-- end of create category -->
+
+        <!-- delete category -->
+        <div id="popupDeleteForm" class="popup-Category">
+            <form action="/deleteCategory" method="post">
+                <span class="close deleteCate"><img src="image/close-form.svg" alt="" /></span>
+
+                <h3>Do you want to</h3>
+                <h3>delete the category?</h3>
+
+                <label for="" id="categoryId-lbl" name="categoryId">Id of Category</label>
+                <label for="" id="categoryName-lbl">Name of Category</label>
+
+                <div class="cancel-deleteBtn">
+                    <button id="cancelBtn-deleteCate">Cancel</button>
+                    <button id="deleteBtn-category" type="submit">Yes</button>
+                </div>
+            </form>
+        </div>
+        <!-- end of delete category -->
+
+        <div class="overlay" id="overlay"></div>
+        <!-- overlay -->
+
+        <!-- content -->
+        <section id="container-fluid">
+            <!-- area 1 -->
+            <div class="row area1">
+                <div class="col-lg-6 col-sm-12">
+                    <h1>
+                        <%= article %>
+                    </h1>
+                </div>
+                <div class="col-lg-6 col-sm-12 btn-area">
+                    <a href="" class="btn" id="createCategory">
+                        <%= button %>
+                    </a>
+                </div>
+            </div>
+            <!-- end of area 1 -->
+
+            <!-- area 2 -->
+            <div class="row area2">
+                <% categories.forEach((category)=> { %>
+                    <div class="col-lg-6 col-sm-12">
+                        <!-- category -->
+                        <div class="category" id="category_<%= category.id %>">
+                            <!-- category section 1 -->
+                            <div class="category-sec1">
+                                <h3>
+                                    <%= category.name %>
+                                </h3>
+                                <div class="icon">
+                                    <a href="#" class="edit-icon" data-category-id="<%= category.id %>"><img
+                                            src="image/edit_back-office.svg" alt=""></a>
+                                    <a href="#" class="delete-icon" data-category-id="<%= category.id %>"><img
+                                            src="image/red-bin.svg" alt="red-bin" /></a>
+                                </div>
+                            </div>
+
+                            <!-- category section 2 -->
+                            <div class="category-sec2">
+                                <p class="category-id">
+                                    Id: <%= category.id %>
+                                </p>
+                            </div>
+
+                            <!-- category section 3 -->
+                            <div class="category-sec3">
+                                <div>
+                                    <p>Products</p>
+                                </div>
+                                <div class="totalProduct">
+                                    <p>Total: 5</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of category -->
+
+                        <!-- edit category -->
+                        <div class="editCategory-area" id="editCategory_<%= category.id %>" style="display: none">
+                            <!-- category section 1 -->
+                            <div class="category-sec1">
+                                <input type="text" name="" id="edit-categoryName_<%= category.id %>"
+                                    placeholder="<%= category.name %>" value="<%= category.name %>" />
+                                <div class="icon">
+                                    <button href="#" class="done-icon" data-category-id="<%= category.id %>">Done</button>
+                                </div>
+                            </div>
+
+                            <!-- category section 2 -->
+                            <div class="category-sec2">
+                                <input type="text" name="" id="edit-categoryId_<%= category.id %>"
+                                    placeholder="<%= category.id %>" value="<%= category.id %>" />
+                            </div>
+
+                            <!-- category section 3 -->
+                            <div class="category-sec3">
+                                <div>
+                                    <p>Products</p>
+                                </div>
+                                <div class="totalProduct">
+                                    <p>Total: 5</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of edit category -->
+                    </div>
+                    <% }); %>
+            </div>
+            <!-- end of area 2 -->
+        </section>
+        <!-- end of area 2 -->
+
+        <script src="/controllers/back-office/header.js"></script>
+        <script src="/controllers/back-office/category.js"></script>
+</body>
+
+</html>

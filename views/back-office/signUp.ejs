@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Sign Up</title>
 
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/back-office/welcomeStyle.css">
+    <link rel="stylesheet" href="css/back-office/login_signUp.css">
 </head>
 <body>
     <div class="container">
-        <div id="logo_section">
+        <div class="circle">
             <img src="image/logo.png" alt="logo_img">
         </div>
-        <div id="content_section">
-            <h1>Welcome to our back-office !</h1>
-            <p>Good luck with your business</p>
-            <a href="login" class="btn">Log In</a>
-            <p>or</p>
-            <a href="signUp" class="btn">Sign Up</a>
-        </div>
+        <p><%= text %></p>
+        <% forms.forEach((form) => { %>
+            <div>
+                <label for=""><%= form.topic%></label><br>
+                <input type="text">
+            </div>
+        <% }); %>
+        <a href="" class="btn"><%= button%></a>
+        <p>Already have an account?<a href="login"> Log in</a></p>
     </div>
 </body>
 </html>
