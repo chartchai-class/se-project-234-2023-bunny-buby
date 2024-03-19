@@ -17,6 +17,44 @@ app.get("/WebStore/login", (req, res) => {
     res.render("WebStore/login");
 });
 
+app.get("/WebStore/basket", (req, res) => {
+    // Dummy product data for testing
+    const products = [
+        {
+            name: "Product 1",
+            image: "/images/product1.jpg",
+            color: "Blue",
+            size: "Medium",
+            price: "19.99"
+        },
+        {
+            name: "Product 2",
+            image: "/images/product2.jpg",
+            color: "Red",
+            size: "Large",
+            price: "24.99",
+            discount: "5" // Example discount of $5
+        },
+        {
+            name: "Product 3",
+            image: "/images/product3.jpg",
+            color: "Red",
+            size: "Large",
+            price: "24.99"
+        }
+        // Add more product objects as needed
+    ];
+    const totalItems = products.length;
+    const totalPrice = products.reduce((total, product) => total + parseFloat(product.price), 0);
+
+    // Pass products, totalItems, and totalPrice to the view
+    res.render("WebStore/basket", { products, totalItems, totalPrice });
+});
+
+app.get("/WebStore/checkout", (req, res) => {
+    res.render("WebStore/checkout");
+});
+
 app.get("/signup", (req, res) => {
     res.render("WebStore/signup");
 });

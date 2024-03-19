@@ -1,0 +1,78 @@
+
+<link rel="stylesheet" href="/css/productcardstyle.css">
+<div class="product-card">
+    <div class="product-image">
+        <img src="/image/home-products/nike.jpg" alt="Product Image">
+    </div>
+    <div class="product-details">
+        <h2 class="product-title"><%= product.name %></h2>
+        <p class="product-description">Color: <%= product.color %></p>
+        <p class="product-description">Size: <%= product.size %></p>
+        <div class="sameline">
+            <div class="quantity-controls">
+                <button class="decrease-quantity">-</button>
+                <input type="text" class="quantity" value="1">
+                <button class="increase-quantity">+</button>
+            </div>
+            <% if (product.discount) { %>
+                <div class="discount-version">
+                    <div class="discounted-price">
+                        $<%= (parseFloat(product.price) - product.discount).toFixed(2) %>
+                    </div>
+                    <div class="original-price">
+                        $<%= product.price %>
+                    </div>
+                </div>
+                
+            <% } else { %>
+                <div class="product-price">
+                    $<%= product.price %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all the product cards on the page
+    const productCards = document.querySelectorAll('.product-card');
+
+    // Loop through each product card
+    productCards.forEach(card => {
+        // Get the quantity controls within this product card
+        const quantityControls = card.querySelector('.quantity-controls');
+        const decreaseBtn = quantityControls.querySelector('.decrease-quantity');
+        const increaseBtn = quantityControls.querySelector('.increase-quantity');
+        const quantityInput = quantityControls.querySelector('.quantity');
+
+        // Check if event listeners are already attached
+        if (!decreaseBtn.hasAttribute('data-clicked')) {
+            // Decrease button click event
+            decreaseBtn.addEventListener('click', () => {
+                let quantity = parseInt(quantityInput.value);
+                quantity = Math.max(0, quantity - 1);
+                quantityInput.value = quantity;
+                // If quantity reaches zero, remove the product from the basket
+                if (quantity === 0) {
+                    card.remove(); // Remove the entire product card
+                    // You can also add code here to remove the product from the backend/database
+                }
+            });
+            // Mark the button as clicked to indicate that the event listener is attached
+            decreaseBtn.setAttribute('data-clicked', true);
+        }
+
+        if (!increaseBtn.hasAttribute('data-clicked')) {
+            // Increase button click event
+            increaseBtn.addEventListener('click', () => {
+                let quantity = parseInt(quantityInput.value);
+                quantity++;
+                quantityInput.value = quantity;
+            });
+            // Mark the button as clicked to indicate that the event listener is attached
+            increaseBtn.setAttribute('data-clicked', true);
+        }
+    });
+});
+</script>

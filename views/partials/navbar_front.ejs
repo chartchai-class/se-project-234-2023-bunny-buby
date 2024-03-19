@@ -18,8 +18,9 @@
                         <input id="mobileSearchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="display: none;">
                     </div>
                 </form>
-                <a class="basket-mb" href="">
+                <a class="basket-mb" href="/WebStore/basket">
                     <img src="/image/basket.png" alt="" width="25">
+                    <span class="basket-num-mb"></span>
                 </a>
                 <a class="accout-mb" href="">
                     <img src="/image/account.png" alt="" width="25">
@@ -62,26 +63,31 @@
                     </form>
                 </li>                
                 <li class="nav-item basket-icon">
-                    <a class="nav-link" href="/views/WebStore/basket.html">
+                    <a class="nav-link basket-d" href="/WebStore/basket">
                         <img src="/image/basket.png" alt="Basket" width="30">
+                        <span class="basket-num"></span>
                     </a>
                 </li>
-                <!-- Show dropdown menu only on desktop -->
                 <li class="nav-item dropdown account-icon">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="/image/account.png" alt="account" width="30">
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <div class="account-details">
-                                <div class="account-image-container">
-                                    <img src="/image/account.png" alt="account" width="60">
-                                </div>    
-                                <div class="account-text">
-                                    Hello! User
+                        <div id="contentWrapper">
+                            <div id="header-account">
+                                <img class="acc-dropdown" src="/image/account.png" alt="" width="100">
+                                <div>
+                                    Account name <br>
+                                    Email@gmail
                                 </div>
                             </div>
-                        </li>
+                            <div id="container-account">
+                                <a id="login-btn-account" href="/WebStore/login">
+                                    <button>Log In</button>
+                                </a>
+                                <p>No account? <a href="/signup">Sing up</a></p>
+                            </div>
+                        </div>
                     </ul>
                 </li>
             </ul>
@@ -93,19 +99,21 @@
     document.addEventListener('DOMContentLoaded', function() {
     var mobileSearchInput = document.getElementById('mobileSearchInput');
     var mobileSearchButton = document.getElementById('mobileSearchButton');
-    var mobileAccountDropdown = document.querySelector('.account-icon .dropdown-menu');
-
-    // Mobile search button click event
-    mobileSearchButton.addEventListener('click', function(event) {
-        // Toggle the visibility of the search input
-        mobileSearchInput.style.display = mobileSearchInput.style.display === 'none' ? 'block' : 'none';
-        // Focus on the search input when it becomes visible
-        if (mobileSearchInput.style.display === 'block') {
-            mobileSearchInput.focus();
-        }
-        // Prevent default behavior (e.g., form submission)
-        event.preventDefault();
+    
+    if (mobileSearchButton && mobileSearchInput) {
+        // Mobile search button click event
+        mobileSearchButton.addEventListener('click', function(event) {
+            // Toggle the visibility of the search input
+            mobileSearchInput.style.display = mobileSearchInput.style.display === 'none' ? 'block' : 'none';
+            // Focus on the search input when it becomes visible
+            if (mobileSearchInput.style.display === 'block') {
+                mobileSearchInput.focus();
+            }
+            // Prevent default behavior (e.g., form submission)
+            event.preventDefault();
+        });
+    }
     });
-});
+
 
 </script>
