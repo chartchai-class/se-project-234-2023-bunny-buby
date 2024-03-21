@@ -3,28 +3,13 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
 
-const categories = require("./models/categoryModel");
-const products = require("./models/productModel");
-const sales = require("./models/salesModel");
-
-app.use(express.static("public"));
 app.use('/controllers', express.static('controllers'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.set('view engine', 'ejs');
-
-app.get('/back-office/welcome', (req, res) => {
-    res.render('back-office/welcome');
-})
-
-const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
-app.use('/controllers', express.static('controllers'));
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Database models
 const db = require("./config/db");
@@ -37,9 +22,9 @@ const session = require("express-session");
 const mysqlStore = require("express-mysql-session")(session);
 
 // DB connection for storing session data
-const options = db.dbconfig;
-options.createDatabaseTable = true;
-const sessionStore = new mysqlStore(options);
+// const options = db.dbconfig;
+// options.createDatabaseTable = true;
+// const sessionStore = new mysqlStore(options);
 
 // Define session configuration for your server
 // app.use(session({
@@ -57,6 +42,10 @@ const sessionStore = new mysqlStore(options);
 // }))
 
 // const Authen = require("./controllers/authen");
+
+app.get('/back-office/welcome', (req, res) => {
+    res.render('back-office/welcome');
+})
 
 app.get('/back-office/login', (req, res) => {
     forms = [

@@ -12,9 +12,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <link rel="stylesheet" href="css/back-office/mainStyle.css">
-    <link rel="stylesheet" href="css/back-office/selectMenu.css">
-    <link rel="stylesheet" href="css/back-office/create_form.css">
+    <link rel="stylesheet" href="/css/back-office/mainStyle.css">
+    <link rel="stylesheet" href="/css/back-office/selectMenu.css">
+    <link rel="stylesheet" href="/css/back-office/create_form.css">
     
     <style>
         .twoButton {
@@ -134,7 +134,7 @@
 
     <!-- create product -->
     <div id="popupCreateForm" class="popup-product">
-        <form action="/myProduct" method="post">
+        <form action="/back-office/myProduct" method="post">
             <span class="close createProd"><img src="image/close-form.svg" alt=""></span>
         <h3>Add a new product?</h3>
         <!-- input -->
@@ -173,12 +173,12 @@
 
     <!-- delete product -->
     <div id="popupDeleteForm" class="popup-product">
-        <span class="close deleteProd"><img src="image/close-form.svg" alt=""></span>
+        <span class="close deleteProd"><img src="/image/close-form.svg" alt=""></span>
 
         <h3>Do you want to</h3>
         <h3>delete the product?</h3>
         
-        <img src="image/home-products/nike.jpg" alt="" id="deletedProduct-img">
+        <img src="/image/home-products/nike.jpg" alt="" id="deletedProduct-img">
         <label for="" id="productName-lbl">Name of Product</label>
         
         <div class="cancel-deleteBtn">
@@ -190,7 +190,7 @@
 
     <!-- edit product -->
     <div id="popupEditForm" class="popup-product">
-        <span class="close editProd"><img src="image/close-form.svg" alt=""></span>
+        <span class="close editProd"><img src="/image/close-form.svg" alt=""></span>
         <h3>Edit the product?</h3>
         <!-- input -->
         <p>Product ID</p>
@@ -269,8 +269,8 @@
                         <!-- product section 1 -->
                         <div class="product-sec1">
                             <div class="icon">
-                                <div><a href="" class="delete-icon" id="deleteProduct" data-product-id="<%= product.product_id %>"><img src="image/red-bin.svg" alt="red-bin"></a></div>
-                                <div><a href="" class="edit-icon" id="editProduct"><img src="image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
+                                <div><a href="" class="delete-icon" id="deleteProduct" data-product-id="<%= product.product_id %>"><img src="/image/red-bin.svg" alt="red-bin"></a></div>
+                                <div><a href="" class="edit-icon" id="editProduct"><img src="/image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
                             </div>
                         </div>
 

@@ -7,8 +7,8 @@
     <title>My Category</title>
 
     <%- include('../partials/head_backOffice') %>
-        <link rel="stylesheet" href="css/back-office/mainStyle.css" />
-        <link rel="stylesheet" href="css/back-office/create_form.css" />
+        <link rel="stylesheet" href="/css/back-office/mainStyle.css" />
+        <link rel="stylesheet" href="/css/back-office/create_form.css" />
 </head>
 
 <body>
@@ -16,9 +16,9 @@
 
         <!-- create category -->
         <div id="popupCreateForm" class="popup-Category">
-            <span class="close createCate"><img src="image/close-form.svg" alt="" /></span>
+            <span class="close createCate"><img src="/image/close-form.svg" alt="" /></span>
             <h3>Create a new category?</h3>
-            <form action="/addCategory" method="post">
+            <form action="/back-office/addCategory" method="post">
                 <input id="categoryID" name="categoryId" type="text" placeholder="Category ID" />
                 <input id="categoryName" name="categoryName" type="text" placeholder="Category Name" />
 
@@ -32,8 +32,8 @@
 
         <!-- delete category -->
         <div id="popupDeleteForm" class="popup-Category">
-            <form action="/deleteCategory" method="post">
-                <span class="close deleteCate"><img src="image/close-form.svg" alt="" /></span>
+            <form action="/back-office/deleteCategory" method="post">
+                <span class="close deleteCate"><img src="/image/close-form.svg" alt="" /></span>
 
                 <h3>Do you want to</h3>
                 <h3>delete the category?</h3>
@@ -82,9 +82,9 @@
                                 </h3>
                                 <div class="icon">
                                     <a href="#" class="edit-icon" data-category-id="<%= category.category_id %>"><img
-                                            src="image/edit_back-office.svg" alt=""></a>
+                                            src="/image/edit_back-office.svg" alt=""></a>
                                     <a href="#" class="delete-icon" data-category-id="<%= category.category_id %>"><img
-                                            src="image/red-bin.svg" alt="red-bin" /></a>
+                                            src="/image/red-bin.svg" alt="red-bin" /></a>
                                 </div>
                             </div>
 
