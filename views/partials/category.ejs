@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= pageTitle %></title>
     <%- include('../partials/header_front'); %>
+    <link rel="stylesheet" href="/css/product_box.css">
     <link rel="stylesheet" href="/css/categorystyle.css">
         <!-- font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,38 +21,125 @@
             <hr>
             <p class="topic-detail"> <%= productCount %> products </p>
         </div>
-        <!-- product part -->
-        <!-- <div class="product-category">
-            <div class="box-container">
-                <div class="box">
-                    <a href="#"><img src="/image/home-products/nike.jpg" alt="nike"></a>
-                    <div class="product-tile-container">
-                        <div class="product-tile-info-text">
-                            <div class="product-tile-title">
-                                <h4>Nike</h4>
-                            </div>
-                            <div class="product-tile-category">
-                                <h4>Shoe</h4>
-                            </div>
-                        </div>
-                        
-                        <div class="product-tile-price">
-                            <div class="product-tile-price-new">
-                                <h4>$100</h4>
-                            </div>
-                            <div class="product-tile-price-old">
-                                <h4>$200</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+        
+
+<section class="products" id="products">
+
+    <div class="box-container">
+        <!-- <div class="row">
+            <div class="col-sm-6 col-lg-3"> -->
+                
+                <div class="product-box">
+        <a href="#"><img src="/image/home-products/nike.jpg" alt="product1"></a>
+        <div class="product-tile-container">
+  
+          <div class="product-tile-info-text">
+            <div class="product-tile-title">
+              <h4>Nike...</h4>
             </div>
+            <div class="product-tile-category">
+              <h4>Shoes</h4>
+            </div>
+          </div>
+      <!-- gap -->
+          <div class="product-tile-price">
+            <div class="product-tile-price-new">
+              <h4>$150</h4>
+            </div>
+            <div class="product-tile-price-old">
+              <h4>$200</h4>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="product-box">
+        <a href="#"><img src="/image/home-products/nike.jpg" alt="product2"></a>
+        <div class="product-tile-container">
+  
+          <div class="product-tile-info-text">
+            <div class="product-tile-title">
+              <h4>Nike...</h4>
+            </div>
+            <div class="product-tile-category">
+              <h4>Shoes</h4>
+            </div>
+          </div>
+      <!-- gap -->
+          <div class="product-tile-price">
+            <div class="product-tile-price-new">
+              <h4>$150</h4>
+            </div>
+            <div class="product-tile-price-old">
+              <h4>$200</h4>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="product-box">
+        <a href="#"><img src="/image/home-products/nike.jpg" alt="product3"></a>
+        <div class="product-tile-container">
+  
+          <div class="product-tile-info-text">
+            <div class="product-tile-title">
+              <h4>Nike...</h4>
+            </div>
+            <div class="product-tile-category">
+              <h4>Shoes</h4>
+            </div>
+          </div>
+      <!-- gap -->
+          <div class="product-tile-price">
+            <div class="product-tile-price-standard">
+              <h4>$300</h4>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+  
+      <div class="product-box">
+        <a href="#"><img src="/image/home-products/nike.jpg" alt="product4"></a>
+        <div class="product-tile-container">
+  
+          <div class="product-tile-info-text">
+            <div class="product-tile-title">
+              <h4>Nike...</h4>
+            </div>
+            <div class="product-tile-category">
+              <h4>Shoes</h4>
+            </div>
+          </div>
+      <!-- gap -->
+          <div class="product-tile-price">
+            <div class="product-tile-price-standard">
+              <h4>$150</h4>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+            <!-- </div>
+
+
         </div> -->
+
+  
+      
+  
+  
+    </div>
+  
+  </section>
             
 
 
     </div>
-
     <%- include('../partials/footer_front'); %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
