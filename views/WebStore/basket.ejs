@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket</title>
+    <%- include('../partials/header_front'); %>
+    <link rel="stylesheet" href="/css/basketstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">    
+
+</head>
+<body>
+    <%- include('../partials/navbar_front'); %>
+    <div class="container">
+        <div class="grid-container">
+            <div class="grid-item left-col">
+                <div class="callout">
+                    <h5>Hello, username</h5>
+                </div>
+                <div class="topic-contact">
+                    My Basket (<%= totalItems %>)
+                    <p class="topic-detail">
+                        Items in your basket are not reserved - check out now to make them yours !
+                    </p>
+                </div>
+    
+                <!-- Loop through products and include productCard component -->
+                <div class="product-group">
+                    <% products.forEach(product => { %>
+                        <%- include('../partials/productCard', { product: product }) %>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="grid-item right-col">
+                <div class="action-bastketpage">
+                    <div class="actoin-button">
+                        <a href="/WebStore/checkout">
+                            <button class="checkout-button">Check Out</button>
+                        </a>
+                    </div>  
+                </div>
+                <hr>
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-head">Order Summary</div>
+                    <div class="summary-item">
+                        <span><%= totalItems %> items</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span>$<%= totalPrice %></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Shipping Cost</span>
+                        <span>$<%= totalPrice %></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Order discount</span>
+                        <span>$<%= totalPrice %></span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Estimated total</span>
+                        <span>$<%= totalPrice %></span>
+                    </div>
+                    <div class="actoin-button mb-version">
+                        <a href="/WebStore/checkout">
+                            <button class="checkout-button">Check Out</button>
+                        </a>                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('../partials/footer_front'); %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

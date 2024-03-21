@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('../partials/header_front'); %>
+    <link rel="stylesheet" href="/css/loginstyle.css">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <%- include('../partials/navbar_front'); %>
+    <div class="container">
+        <div class="detail">
+            <div class="logoimg">
+                <img src="/image/logo.png" alt="Logo_image">
+            </div>
+            <h2 class="loginTitle">Log In to join us</h2>
+            <form action="/login" method="POST" class="loginForm">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <button id="loginButton" type="submit">Log In</button>
+            </form>
+            <p class="signupText">No account yet? <a href="/signup">Sign Up</a> here!</p>
+            <p class="backofficeText">or are you the <a href="/back-office/welcome">owner</a> of the shop?</p>
+        </div>
+    </div>
+    <!-- <script>
+        click and go to home page
+        document.getElementById("loginButton").addEventListener("click", function(event){
+            event.preventDefault();
+            window.location.href = "/";
+        })
+    </script> -->
+    <%- include('../partials/footer_front'); %>
+</body>
+</html>

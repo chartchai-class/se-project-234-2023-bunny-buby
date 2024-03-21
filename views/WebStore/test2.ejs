@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glide.js</title>
+    <!-- Required Core Stylesheet -->
+<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+
+<!-- Optional Theme Stylesheet -->
+<link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+
+    <style>
+        html,body {
+            height: 100%;
+        }
+        .container {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+        ul {
+            list-style: none;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+              <ul class="glide__slides">
+                <li class="glide__slide"><img src="/image/home_higlight/image_highlight1.jpg" alt="Image 1"></li>
+                <li class="glide__slide"><img src="/image/home_higlight/image_highlight2.jpg" alt="Image 1"></li>
+                <li class="glide__slide"><img src="/image/home_higlight/image_highlight3.jpg" alt="Image 1"></li>
+              </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+              </div>
+          </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+        new Glide('.glide').mount()
+    </script>
+</body>
+</html>

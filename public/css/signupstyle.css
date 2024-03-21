@@ -1,0 +1,119 @@
+body {
+    background-color: #F5F5DC;
+}
+
+.head-deco {
+    height: 140px;
+    position: relative;
+    background-color: #FFE3A5;
+    @media only screen and (max-width: 600px) {
+        height: 130px;
+    }
+}
+
+.head-topic {
+    font-family: "Catamaran", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    @media only screen and (max-width: 600px) {
+        font-size: 26px;
+    }
+}
+
+.container {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
+}
+
+.signupDetail {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-form {
+    position: relative;
+    margin-top: 20px;
+    width: 200%;
+    max-width: 400px;
+    @media only screen and (max-width: 600px) {
+        width: 80%;
+    }
+}
+
+.input-form label {
+    font-family: "Catamaran", sans-serif;
+    font-size: 18px;
+    color: #909090;
+}
+
+.input-form input {
+    font-family: "Catamaran", sans-serif;
+    margin-top: 5px;
+    width: 100%;
+    padding: 8px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    border: 2px solid #CCCCCC;
+    box-sizing: border-box;
+}
+
+/* for required input labels */
+.input-form label::after {
+    content: '*';
+    color: #FF0000;
+    margin-left: 5px;
+}
+
+#signupButton {
+    width: 250px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding: 10px 20px;
+    background-color: #BD4B4B;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#signupButton:hover {
+    background-color: #9c3939;
+}
+
+.password-container {
+    position: relative;
+}
+
+#showPasswordButton {
+    position: absolute;
+    top: 68%;
+    right: 5px;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#showPasswordButton img {
+    width: 20px;
+    height: auto;
+}
+
+#password {
+    padding-right: 30px; /* Ensure space for the button */
+}

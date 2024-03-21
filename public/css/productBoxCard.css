@@ -1,0 +1,75 @@
+/* products section */
+.product-box-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(10rem, 1fr));
+    gap: 1.5rem;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    @media screen and (max-width: 600px) {
+      grid-template-columns: repeat(2, minmax(10rem, 1fr));
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+  
+  .product-box-card {
+    
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    width: 300px;
+    height: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* display: flex; 
+  justify-content: center; 
+  align-items: center;  */
+
+  }
+
+  .product-box-card img {
+    max-width: 100%; /* ให้ภาพไม่เกินขอบเขตของพ่องเว็บ  */
+    max-height: 100%; /* ให้ภาพไม่เกินขอบเขตของพ่องเว็บ */
+    object-fit: contain; /* ทำให้ภาพอยู่ในกล่องโดยไม่ถูกยืดหรือหด */
+  }
+
+  .product-box {
+    background: #fff;
+    border: .1rem solid rgba(0, 0, 0, .2);
+    box-shadow: var(--box--shadow);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .product-box img {
+    width: 100%;
+    height: auto;
+    margin: 20px;
+  }
+  
+  .products .box-container .product-box h4 {
+    padding: 0;
+    text-align: left;
+  }
+  
+  .product-tile-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 30px 20px;
+  }
+  
+  .product-tile-category {
+    color: gray;
+  }
+  
+  .product-tile-price-new {
+    color: red;
+  }
+  
+  .product-tile-price-old {
+    color: gray;
+    text-decoration: line-through;
+  }
+  
+  .product-tile-price-standard {
+    color: black;
+  }

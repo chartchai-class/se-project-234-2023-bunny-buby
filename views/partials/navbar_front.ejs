@@ -1,0 +1,140 @@
+<nav class="navbar navbar-expand-lg bg-custom">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center"> 
+            <!-- Logo -->
+            <a class="navbar-brand" href="/WebStore/home">
+                <img src="/image/logo.png" alt="Logo" width="70">
+            </a>
+            <!-- Toggler on the left -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="group-manage">
+                <form class="search-mb">
+                    <div class="search-container">
+                        <a class="search-mb" id="mobileSearchButton" href="">
+                            <img src="/image/search.png" alt="" width="25">
+                        </a>
+                        <input id="mobileSearchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="display: none;">
+                    </div>
+                </form>
+                <a class="basket-mb" href="/WebStore/basket">
+                    <img src="/image/basket.png" alt="" width="25">
+                    <span class="basket-num-mb"></span>
+                </a>
+                <a class="accout-mb" href="#" id="data-dropdown-button" data-dropdown-button data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="/image/account.png" alt="" width="25">
+                    <div class="dropdown-menu">
+                        <div id="contentWrapper">
+                            <div id="header-account">
+                                <img class="acc-dropdown" src="/image/account.png" alt="" width="60">
+                                <div class="acc-detail">
+                                    Account name <br>
+                                    Email@gmail
+                                </div>
+                            </div>
+                            
+                            <div id="container-account">
+                                <a id="login-btn-account" href="/WebStore/login">
+                                    <button>Log In</button>
+                                </a>
+                                <p id="signup-account">No account? <a href="/signup">Sign up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+        
+        <!-- Navigation Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/WebStore/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WebStore/Category/allproduct">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WebStore/Category/men">Men</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WebStore/Category/women">Women</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WebStore/Category/kids">Kids</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/WebStore/Category/accessories">Accessories</a>
+                </li>
+            </ul>
+            <!-- Icons for search, basket, and account -->
+            <ul class="navbar-nav rightside">
+                <li class="nav-item">
+                    <form class="form-inline my-2 my-lg-0">
+                        <div class="input-group">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-light my-2 my-sm-0 search-button" type="submit">
+                                <img src="/image/search.png" alt="search" width="20">
+                            </button>
+                        </div>
+                    </form>
+                </li>                
+                <li class="nav-item basket-icon">
+                    <a class="nav-link basket-d" href="/WebStore/basket">
+                        <img src="/image/basket.png" alt="Basket" width="30">
+                        <span class="basket-num"></span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown account-icon" data-dropdown>
+                    <a class="nav-link dropdown-toggle" data-dropdown-button href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/image/account.png" alt="account" width="30">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <div id="contentWrapper">
+                            <div id="header-account">
+                                <img class="acc-dropdown" src="/image/account.png" alt="" width="80">
+                                <div class="acc-detail">
+                                    Account name <br>
+                                    Email@gmail
+                                </div>
+                            </div>
+                            
+                            <div id="container-account">
+                                <a id="login-btn-account" href="/WebStore/login">
+                                    <button>Log In</button>
+                                </a>
+                                <p id="signup-account">No account? <a href="/signup">Sign up</a></p>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var mobileSearchInput = document.getElementById('mobileSearchInput');
+        var mobileSearchButton = document.getElementById('mobileSearchButton');
+        
+        if (mobileSearchButton && mobileSearchInput) {
+            // Mobile search button click event
+            mobileSearchButton.addEventListener('click', function(event) {
+                // Toggle the visibility of the search input
+                mobileSearchInput.style.display = mobileSearchInput.style.display === 'none' ? 'block' : 'none';
+                // Focus on the search input when it becomes visible
+                if (mobileSearchInput.style.display === 'block') {
+                    mobileSearchInput.focus();
+                }
+                // Prevent default behavior (e.g., form submission)
+                event.preventDefault();
+            });
+        }
+    });
+
+
+
+</script>

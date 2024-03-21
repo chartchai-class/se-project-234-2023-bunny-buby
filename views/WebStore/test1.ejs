@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <!-- Glide.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+    <style>
+        /* CSS styles for product page layout */
+        .product-page-layout {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .product-detail-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .product-detail-col {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .product-detail-image {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .product-detail-info {
+            flex: 1;
+            padding: 10px;
+        }
+
+        /* Additional CSS styles for responsive design */
+        @media screen and (max-width: 768px) {
+            .product-detail-image {
+                justify-content: center; /* Center images in mobile view */
+            }
+        }
+    </style>
+</head>
+<body>
+   
+
+    <div class="product-page-layout">
+        <div class="product-detail-section">
+            <div class="product-detail-image">
+                <div class="product-detail-col col-lg-8" data-js-images-mobile-carousel>
+                    <!-- รูปภาพของสไลด์ สามารถใส่รูปภาพ 5 รูปได้ -->
+                    <img src="/image/home_higlight/image_highlight1.jpg" alt="Image 1">
+                    <img src="/image/home_higlight/image_highlight1.jpg" alt="Image 2">
+                    <img src="/image/home_higlight/image_highlight1.jpg" alt="Image 3">
+                    <img src="/image/home_higlight/image_highlight1.jpg" alt="Image 4">
+                    <img src="/image/home_higlight/image_highlight1.jpg" alt="Image 5">
+                </div>
+            </div>
+            <div class="product-detail-info">
+                <div class="product-detail-col col-lg-4">
+                    <!-- Product details information -->
+                    <h2>Product Name</h2>
+                    <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>Price: $100</p>
+                    <button>Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Glide.js JavaScript -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script>
+        new Glide('.glide', {
+            type: 'carousel',
+            startAt: 0,
+            perView: 1
+        }).mount();
+    </script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script>
+    // สร้าง Glide.js Carousel หรือ Slider สำหรับมุมมองขนาดเล็ก
+    new Glide('[data-js-images-mobile-carousel]', {
+        type: 'carousel',
+            startAt: 0,
+            perView: 1
+    }).mount();
+</script>
+
+</body>
+</html>
