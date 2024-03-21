@@ -72,11 +72,53 @@ function resetForm() {
 /*      DELETE     */
 // Open the pop-up delete product form
 // Add event listeners to all delete buttons for products
-document.querySelectorAll('#deleteProduct').forEach(function(button) {
-    button.addEventListener('click', function(event) {
+document.querySelectorAll('.delete-icon').forEach(function(button) {
+    button.addEventListener('click', async function (event) {
         event.preventDefault();
+        const productId = this.getAttribute('data-product-id');
+        const product = document.getElementById(`product_${productId}`);
+
+        // Get current data from .category section
+        const productName = product.querySelector('.product-sec2 .product-data h3').innerText;
+        const productImage = product.querySelector('.product-sec2 .product-img #product-img').getAttribute('src');
+
+        const productNameLbl = document.getElementById('productName-lbl');
+        const productImgDeleted = document.getElementById('deletedProduct-img');
+
+        productNameLbl.innerHTML = productName;
+        productImgDeleted.src = productImage;
+
         document.getElementById('popupDeleteForm').classList.add('active');
-        document.getElementById('overlay').style.display = 'block'; 
+        document.getElementById('overlay').style.display = 'block';
+
+        // Set up event listener for confirm button
+        document.getElementById('deleteBtn-product').addEventListener('click', async function () {
+            try {
+                const response = await fetch('/deleteProduct', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ productId: productId, btn: 'deleteBtn-product' })
+                });
+                
+                if (response.ok) {
+                    // Redirect to /myProduct after successful deletion
+                    window.location.href = '/myProduct';
+                } else {
+                    alert('An error occurred while deleting the product. Please try again later.');
+                }
+            } catch (error) {
+                // Handle network errors or other exceptions
+                console.error('Error deleting product:', error);
+                // Display an error message to the user
+                alert('An error occurred while deleting the product. Please try again later.');
+            } finally {
+                // Close the delete confirmation popup
+                document.getElementById('popupDeleteForm').classList.remove('active');
+                document.getElementById('overlay').style.display = 'none';
+            }
+        });
     });
 });
 // Close the pop-up form
@@ -93,7 +135,7 @@ document.getElementById('cancelBtn-deleteProd').addEventListener('click', functi
 });
 // Delete button action
 document.getElementById('deleteBtn-product').addEventListener('click', function() {
-    alert('Delete product button clicked!');
+    document.getElementById('popupEditForm')
 });
 
 
@@ -148,3 +190,19 @@ function resetForm() {
     imgFile.innerHTML = 'No file Chosen';
     imgFile.style.color = '#827575';
 }
+
+
+/*   CHOOSE CATEGORY   */
+// Add an event listener to the category options
+document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function() {
+        const categoryId = this.getAttribute('data-category-id');
+
+        fetch(`/myProduct?categoryId=${categoryId}`)
+            .then(response => {
+                response.json();
+                window.location.href = `/myProduct?categoryId=${categoryId}`;
+            })
+            .catch(error => console.error('Error:', error));
+    });
+});

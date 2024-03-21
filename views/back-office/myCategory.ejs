@@ -74,16 +74,16 @@
                 <% categories.forEach((category)=> { %>
                     <div class="col-lg-6 col-sm-12">
                         <!-- category -->
-                        <div class="category" id="category_<%= category.id %>">
+                        <div class="category" id="category_<%= category.category_id %>">
                             <!-- category section 1 -->
                             <div class="category-sec1">
-                                <h3>
-                                    <%= category.name %>
+                                <h3 id="categoryNameh3" data-category-id="<%= category.category_id %>">
+                                    <%= category.category_name %>
                                 </h3>
                                 <div class="icon">
-                                    <a href="#" class="edit-icon" data-category-id="<%= category.id %>"><img
+                                    <a href="#" class="edit-icon" data-category-id="<%= category.category_id %>"><img
                                             src="image/edit_back-office.svg" alt=""></a>
-                                    <a href="#" class="delete-icon" data-category-id="<%= category.id %>"><img
+                                    <a href="#" class="delete-icon" data-category-id="<%= category.category_id %>"><img
                                             src="image/red-bin.svg" alt="red-bin" /></a>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                             <!-- category section 2 -->
                             <div class="category-sec2">
                                 <p class="category-id">
-                                    Id: <%= category.id %>
+                                    Id: <%= category.category_id %>
                                 </p>
                             </div>
 
@@ -108,20 +108,20 @@
                         <!-- end of category -->
 
                         <!-- edit category -->
-                        <div class="editCategory-area" id="editCategory_<%= category.id %>" style="display: none">
+                        <div class="editCategory-area" id="editCategory_<%= category.category_id %>" style="display: none">
                             <!-- category section 1 -->
                             <div class="category-sec1">
-                                <input type="text" name="" id="edit-categoryName_<%= category.id %>"
-                                    placeholder="<%= category.name %>" value="<%= category.name %>" />
+                                <input type="text" name="" id="edit-categoryName_<%= category.category_id %>"
+                                    placeholder="<%= category.category_name %>" value="<%= category.category_name %>" />
                                 <div class="icon">
-                                    <button href="#" class="done-icon" data-category-id="<%= category.id %>">Done</button>
+                                    <button href="#" class="done-icon" data-category-id="<%= category.category_id %>">Done</button>
                                 </div>
                             </div>
 
                             <!-- category section 2 -->
                             <div class="category-sec2">
-                                <input type="text" name="" id="edit-categoryId_<%= category.id %>"
-                                    placeholder="<%= category.id %>" value="<%= category.id %>" />
+                                <input type="text" name="" id="edit-categoryId_<%= category.category_id %>"
+                                    placeholder="<%= category.category_id %>" value="<%= category.category_id %>" />
                             </div>
 
                             <!-- category section 3 -->

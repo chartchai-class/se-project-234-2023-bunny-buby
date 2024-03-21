@@ -134,21 +134,22 @@
 
     <!-- create product -->
     <div id="popupCreateForm" class="popup-product">
-        <span class="close createProd"><img src="image/close-form.svg" alt=""></span>
+        <form action="/myProduct" method="post">
+            <span class="close createProd"><img src="image/close-form.svg" alt=""></span>
         <h3>Add a new product?</h3>
         <!-- input -->
         <p>Product ID</p>
-        <input id="productID" type="text" placeholder="">
+        <input id="productID" type="text" placeholder="" name="productId">
 
         <p>Product name</p>
-        <input id="productName" type="text" placeholder="">
+        <input id="productName" type="text" placeholder="" name="productName">
 
         <p>Description</p>
-        <input id="description" type="text" placeholder="">
+        <input id="description" type="text" placeholder="" name="productDes">
 
         <p>Image</p>
         <div class="inputImg-area">
-            <input id="product-image" type="file" accept="image/*">
+            <input id="product-image" type="file" accept="image/*" name="productImage">
             <label for="product-image">
                 <i class="fas fa-upload"></i>
                 &nbsp;Upload new image
@@ -157,15 +158,16 @@
         </div>
         
         <p>Price</p>
-        <input id="price" type="text" placeholder="">
+        <input id="price" type="text" placeholder="" name="productPrice">
 
         <p>Sales count</p>
-        <input id="salesCount" type="text" placeholder="">
+        <input id="salesCount" type="text" placeholder="" name="productSalesCount">
 
         <div class="cancel-deleteBtn">
             <button id="cancelBtn-createProd">Cancel</button>
-            <button id="createBtn-product">Create</button>
+            <button id="createBtn-product" type="submit">Create</button>
         </div>
+        </form>
     </div>
     <!-- end of create product -->
 
@@ -177,7 +179,7 @@
         <h3>delete the product?</h3>
         
         <img src="image/home-products/nike.jpg" alt="" id="deletedProduct-img">
-        <label for="" id="categoryName-lbl">Name of Category</label>
+        <label for="" id="productName-lbl">Name of Product</label>
         
         <div class="cancel-deleteBtn">
             <button id="cancelBtn-deleteProd">Cancel</button>
@@ -234,16 +236,21 @@
                 <!-- select menu -->
                 <div class="select-menu">
                     <div class="select-btn">
-                        <span class="sBtn-text">Choose category</span>
+                        <span class="sBtn-text">
+                            <% if (selectedCate[0]) { %>
+                                <%= selectedCate[0] %>
+                            <% } else { %>
+                                Choose category
+                            <% } %>
+                        </span>
                         <i class="bx bx-chevron-down"></i>
                     </div>
                     <ul class="options">
-                        <li class="option">
-                            <span class="option-text">Github</span>
-                        </li>
-                        <li class="option">
-                            <span class="option-text">Instagram</span>
-                        </li>
+                        <% categories.forEach((category) => { %>
+                            <li class="option"  data-category-id="<%= category.category_id%>">
+                                <span class="option-text"><%=  category.category_name %></span>
+                            </li>
+                        <% }); %>
                     </ul>
                 </div>
                 <!-- create button -->
@@ -258,11 +265,11 @@
                 <div class="col-lg-6 col-sm-12">
 
                     <!-- product -->
-                    <div class="product">
+                    <div class="product" id="product_<%= product.product_id %>" data-product-id="<%= product.product_id %>">
                         <!-- product section 1 -->
                         <div class="product-sec1">
                             <div class="icon">
-                                <div><a href="" class="delete-icon" id="deleteProduct"><img src="image/red-bin.svg" alt="red-bin"></a></div>
+                                <div><a href="" class="delete-icon" id="deleteProduct" data-product-id="<%= product.product_id %>"><img src="image/red-bin.svg" alt="red-bin"></a></div>
                                 <div><a href="" class="edit-icon" id="editProduct"><img src="image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
                             </div>
                         </div>
@@ -270,29 +277,29 @@
                         <!-- product section 2 -->
                         <div class="product-sec2">
                             <div class="product-img">
-                                <img src="<%= product.image %>" alt="product-image">
+                                <img src="<%= product.product_images %>" alt="product-image" id="product-img">
                             </div>
                             <div class="product-data">
-                                <h3><%= product.name %></h3>
+                                <h3><%= product.product_name %></h3>
                                 <div class="row same-line">
-                                    <div class="col-lg-6 col-sm-12"><p><b>ID of product:  </b><%= product.id %></p></div>
-                                    <div class="col-lg-6 col-sm-12"><p><b>ID of category:  </b><%= product.cateId %></p></div>
+                                    <div class="col-lg-6 col-sm-12"><p><b>ID of product:  </b><%= product.product_id %></p></div>
+                                    <div class="col-lg-6 col-sm-12"><p><b>ID of category:  </b><%= product.category_id %></p></div>
                                 </div>
-                                <p><b>Description:  </b> <%= product.des %></p>
+                                <p><b>Description:  </b> <%= product.product_description %></p>
                             </div>
                         </div>
 
                         <!-- product section 3 -->
                         <div class="product-sec3">
                             <div class="price-section">
-                                <% if (product.salesCount) { %>
-                                    <div class="old-price"><p>$<%= product.price %></p></div>
-                                    <div class="price-promotion"><p>$<%= product.pricePromotion %></p></div>
+                                <% if (product.product_sales_count) { %>
+                                    <div class="old-price"><p>$<%= product.product_price %></p></div>
+                                    <div class="price-promotion"><p>$<%= product.product_price_promotion %></p></div>
                                 <% } else { %>
-                                    <div class="price"><p>$<%= product.price %></p></div>
+                                    <div class="price"><p>$<%= product.product_price %></p></div>
                                 <% } %>
                             </div>
-                            <div class="soldItems"><p><%= product.soldItems %> items sold</p></div>
+                            <div class="soldItems"><p>5 items sold</p></div>
                         </div>
                     </div>
                     <!-- end of product -->

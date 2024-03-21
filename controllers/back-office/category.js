@@ -1,20 +1,20 @@
 /*      CREATE     */
 // Open the pop-up create catagory form
-document.getElementById('createCategory').addEventListener('click', function(event) {
+document.getElementById('createCategory').addEventListener('click', function (event) {
     event.preventDefault(); // Prevent the default behavior of the anchor tag
     document.getElementById('popupCreateForm').classList.add('active');
     document.getElementById('overlay').style.display = 'block'; // Show the overlay
 });
 
 // Close the pop-up form
-document.querySelector('.close.createCate').addEventListener('click', function() {
+document.querySelector('.close.createCate').addEventListener('click', function () {
     document.getElementById('popupCreateForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 
 // Cancel button action
-document.getElementById('cancelBtn-createCate').addEventListener('click', function() {
+document.getElementById('cancelBtn-createCate').addEventListener('click', function () {
     document.getElementById('popupCreateForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
@@ -31,8 +31,8 @@ function resetForm() {
 /*      DELETE     */
 // Open the pop-up delete catagory form
 // Add event listeners to all delete buttons for categories
-document.querySelectorAll('.delete-icon').forEach(function(button) {
-    button.addEventListener('click', async function(event) {
+document.querySelectorAll('.delete-icon').forEach(function (button) {
+    button.addEventListener('click', async function (event) {
         event.preventDefault();
         const categoryId = this.getAttribute('data-category-id');
         const category = document.getElementById(`category_${categoryId}`);
@@ -46,12 +46,12 @@ document.querySelectorAll('.delete-icon').forEach(function(button) {
 
         categoryIdLbl.innerHTML = categoryIdText;
         categoryNameLbl.innerHTML = categoryName;
-        
+
         document.getElementById('popupDeleteForm').classList.add('active');
         document.getElementById('overlay').style.display = 'block';
-        
+
         // Set up event listener for confirm button
-        document.getElementById('deleteBtn-category').addEventListener('click', async function() {
+        document.getElementById('deleteBtn-category').addEventListener('click', async function () {
             try {
                 // Send POST request to backend for deletion
                 await fetch('/deleteCategory', {
@@ -75,13 +75,13 @@ document.querySelectorAll('.delete-icon').forEach(function(button) {
     });
 });
 // Close the pop-up form
-document.querySelector('.close.deleteCate').addEventListener('click', function() {
+document.querySelector('.close.deleteCate').addEventListener('click', function () {
     document.getElementById('popupDeleteForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 // Cancel button action
-document.getElementById('cancelBtn-deleteCate').addEventListener('click', function() {
+document.getElementById('cancelBtn-deleteCate').addEventListener('click', function () {
     document.getElementById('popupDeleteForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
@@ -92,13 +92,12 @@ document.getElementById('cancelBtn-deleteCate').addEventListener('click', functi
 /*      Edit     */
 // Add event listener to edit buttons
 document.querySelectorAll('.edit-icon').forEach((editBtn) => {
-    editBtn.addEventListener('click', function(event) {
+    editBtn.addEventListener('click', function (event) {
         event.preventDefault();
-        const categoryId = this.getAttribute('data-category-id');
         const category = this.closest('.category');
         const editCategory = category.nextElementSibling;
         const editCategoryParent = editCategory.parentNode;
-        
+
         // Toggle visibility of category and editCategory
         document.getElementById('overlay').style.display = 'block';
         category.style.display = 'none';
@@ -111,26 +110,25 @@ document.querySelectorAll('.edit-icon').forEach((editBtn) => {
     });
 });
 
-// Add event listener to done buttons// Add event listener to done buttons
+// Add event listener to done buttons
 document.querySelectorAll('.done-icon').forEach((doneBtn) => {
-    doneBtn.addEventListener('click', async function(event) {
+    doneBtn.addEventListener('click', async function (event) {
         event.preventDefault();
         const categoryId = this.getAttribute('data-category-id');
-        const category = document.getElementById(`category_${categoryId}`);
         const editCategory = document.getElementById(`editCategory_${categoryId}`);
-        
+
         // Update edit data fields with current data
         const editCategoryNameInput = editCategory.querySelector(`#edit-categoryName_${categoryId}`).value;
         const editCategoryIdInput = editCategory.querySelector(`#edit-categoryId_${categoryId}`).value;
-        
+
         try {
-            // Send POST request to backend for category update
-            const response = await fetch('/editCategory', {
-                method: 'POST',
+            // Send PATCH request to backend for category update
+            const response = await fetch(`/api/categories/update/${categoryId}`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ categoryId: categoryId, newCateId: editCategoryIdInput, newCateName: editCategoryNameInput })
+                body: JSON.stringify({ newId: editCategoryIdInput, newName: editCategoryNameInput })
             });
 
             if (response.ok) {
@@ -145,8 +143,7 @@ document.querySelectorAll('.done-icon').forEach((doneBtn) => {
             console.error('Error updating category:', error);
             alert('An error occurred while updating the category. Please try again later.');
         } finally {
-            // Toggle visibility of category and editCategory
-            category.style.display = 'block';
+            // Toggle visibility of editCategory
             editCategory.style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
@@ -154,6 +151,25 @@ document.querySelectorAll('.done-icon').forEach((doneBtn) => {
 });
 
 
+/*      VIEW PRODUCT    */
+document.querySelectorAll('#categoryNameh3').forEach(function (categoryh3) {
+    categoryh3.addEventListener('mouseover', function (event) {
+        this.style.textDecoration = "underline";
+        this.style.cursor = "pointer";
+    });
+    categoryh3.addEventListener('mouseout', function (event) {
+        this.style.textDecoration = "none";
+        this.style.cursor = "default";
+    });
 
+    categoryh3.addEventListener('click', async function (event) {
+        const categoryId = this.getAttribute('data-category-id');
 
-
+        fetch(`/myProduct?categoryId=${categoryId}`)
+            .then(response => {
+                response.json();
+                window.location.href = `/myProduct?categoryId=${categoryId}`;
+            })
+            .catch(error => console.error('Error:', error));
+    })
+});

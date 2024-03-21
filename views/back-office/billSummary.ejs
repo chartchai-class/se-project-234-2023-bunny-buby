@@ -50,7 +50,9 @@
             </div>
         </div>
         <div class="row area2">
-            
+            <% salesList.forEach((sale)=> { %>
+                <p><%= sale.bill_id %></p>
+            <% }); %>
         </div>
     </section>
 
