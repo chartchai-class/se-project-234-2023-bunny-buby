@@ -10,8 +10,12 @@
     <!--===== Boxicons CSS =====-->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="css/mainStyle.css">
-    <link rel="stylesheet" href="css/selectMenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/back-office/mainStyle.css">
+    <link rel="stylesheet" href="css/back-office/selectMenu.css">
+    <link rel="stylesheet" href="css/back-office/create_form.css">
+    
     <style>
         .twoButton {
             margin-top: 2vw;
@@ -126,71 +130,187 @@
     </style>
 </head>
 <body>
-    <%- include('../partials/navbar_backOffice')  %>
+    <%- include('../partials/header_backOffice') %>
+
+    <!-- create product -->
+    <div id="popupCreateForm" class="popup-product">
+        <form action="/myProduct" method="post">
+            <span class="close createProd"><img src="image/close-form.svg" alt=""></span>
+        <h3>Add a new product?</h3>
+        <!-- input -->
+        <p>Product ID</p>
+        <input id="productID" type="text" placeholder="" name="productId">
+
+        <p>Product name</p>
+        <input id="productName" type="text" placeholder="" name="productName">
+
+        <p>Description</p>
+        <input id="description" type="text" placeholder="" name="productDes">
+
+        <p>Image</p>
+        <div class="inputImg-area">
+            <input id="product-image" type="file" accept="image/*" name="productImage">
+            <label for="product-image">
+                <i class="fas fa-upload"></i>
+                &nbsp;Upload new image
+            </label>
+            <p class="img-file" id="img-file">No file chosen</p>
+        </div>
+        
+        <p>Price</p>
+        <input id="price" type="text" placeholder="" name="productPrice">
+
+        <p>Sales count</p>
+        <input id="salesCount" type="text" placeholder="" name="productSalesCount">
+
+        <div class="cancel-deleteBtn">
+            <button id="cancelBtn-createProd">Cancel</button>
+            <button id="createBtn-product" type="submit">Create</button>
+        </div>
+        </form>
+    </div>
+    <!-- end of create product -->
+
+    <!-- delete product -->
+    <div id="popupDeleteForm" class="popup-product">
+        <span class="close deleteProd"><img src="image/close-form.svg" alt=""></span>
+
+        <h3>Do you want to</h3>
+        <h3>delete the product?</h3>
+        
+        <img src="image/home-products/nike.jpg" alt="" id="deletedProduct-img">
+        <label for="" id="productName-lbl">Name of Product</label>
+        
+        <div class="cancel-deleteBtn">
+            <button id="cancelBtn-deleteProd">Cancel</button>
+            <button id="deleteBtn-product">Yes</button>
+        </div>
+    </div>
+    <!-- end of delete product -->
+
+    <!-- edit product -->
+    <div id="popupEditForm" class="popup-product">
+        <span class="close editProd"><img src="image/close-form.svg" alt=""></span>
+        <h3>Edit the product?</h3>
+        <!-- input -->
+        <p>Product ID</p>
+        <input id="productID" type="text" placeholder="">
+
+        <p>Product name</p>
+        <input id="productName" type="text" placeholder="">
+
+        <p>Description</p>
+        <input id="description" type="text" placeholder="">
+
+        <p>Image</p>
+        <div class="inputImg-area">
+            <input id="product-image-edit" type="file" accept="image/*">
+            <label for="product-image-edit">
+                <i class="fas fa-upload"></i>
+                &nbsp;Upload new image
+            </label>
+            <p class="img-file" id="img-file-edit">No file chosen</p>
+        </div>
+        
+        <p>Price</p>
+        <input id="price" type="text" placeholder="">
+
+        <p>Sales count</p>
+        <input id="salesCount" type="text" placeholder="">
+
+        <div class="cancel-deleteBtn">
+            <button id="cancelBtn-editProd">Cancel</button>
+            <button id="editBtn-product">Edit</button>
+        </div>
+    </div>
+    <!-- edit of edit product -->
+
+    <div class="overlay" id="overlay"></div> <!-- overlay -->
+
+    <!-- content -->
     <section id="container-fluid">
+        <!-- area 1 -->
         <div class="row area1">
-            <div class="article"><h1><%= article %></h1></div>
+            <div class="article"><h1>My Product ( <%= totalProducts %> )</h1></div>
             <div class="twoButton">
-                <%- include('../partials/selectMenu_backOffice')  %>
-                <div class="categoryBtn"><a href="" class="btn"><%= button %></a></div>
+                <!-- select menu -->
+                <div class="select-menu">
+                    <div class="select-btn">
+                        <span class="sBtn-text">
+                            <% if (selectedCate[0]) { %>
+                                <%= selectedCate[0] %>
+                            <% } else { %>
+                                Choose category
+                            <% } %>
+                        </span>
+                        <i class="bx bx-chevron-down"></i>
+                    </div>
+                    <ul class="options">
+                        <% categories.forEach((category) => { %>
+                            <li class="option"  data-category-id="<%= category.category_id%>">
+                                <span class="option-text"><%=  category.category_name %></span>
+                            </li>
+                        <% }); %>
+                    </ul>
+                </div>
+                <!-- create button -->
+                <div><a href="" class="btn" id="createProduct"><%= button %></a></div>
             </div>
         </div>
+        <!-- end of area 1 -->
+
+        <!-- area 2 -->
         <div class="row area2">
             <% products.forEach((product) => { %>
                 <div class="col-lg-6 col-sm-12">
-                    <div class="product">
+
+                    <!-- product -->
+                    <div class="product" id="product_<%= product.product_id %>" data-product-id="<%= product.product_id %>">
+                        <!-- product section 1 -->
                         <div class="product-sec1">
                             <div class="icon">
-                                <div><a href="" class="delete-icon"><img src="image/red-bin.svg" alt="red-bin"></a></div>
-                                <div><a href="" class="edit-icon"><img src="image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
+                                <div><a href="" class="delete-icon" id="deleteProduct" data-product-id="<%= product.product_id %>"><img src="image/red-bin.svg" alt="red-bin"></a></div>
+                                <div><a href="" class="edit-icon" id="editProduct"><img src="image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
                             </div>
                         </div>
+
+                        <!-- product section 2 -->
                         <div class="product-sec2">
                             <div class="product-img">
-                                <img src="<%= product.image %>" alt="product-image">
+                                <img src="<%= product.product_images %>" alt="product-image" id="product-img">
                             </div>
                             <div class="product-data">
-                                <h3><%= product.name %></h3>
+                                <h3><%= product.product_name %></h3>
                                 <div class="row same-line">
-                                    <div class="col-lg-6 col-sm-12"><p><b>ID of product:  </b><%= product.id %></p></div>
-                                    <div class="col-lg-6 col-sm-12"><p><b>ID of category:  </b><%= product.cateId %></p></div>
+                                    <div class="col-lg-6 col-sm-12"><p><b>ID of product:  </b><%= product.product_id %></p></div>
+                                    <div class="col-lg-6 col-sm-12"><p><b>ID of category:  </b><%= product.category_id %></p></div>
                                 </div>
-                                <p><b>Description:  </b> <%= product.des %></p>
+                                <p><b>Description:  </b> <%= product.product_description %></p>
                             </div>
                         </div>
+
+                        <!-- product section 3 -->
                         <div class="product-sec3">
                             <div class="price-section">
-                                <% if (product.salesCount) { %>
-                                    <div class="old-price"><p>$<%= product.price %></p></div>
-                                    <div class="price-promotion"><p>$<%= product.pricePromotion %></p></div>
+                                <% if (product.product_sales_count) { %>
+                                    <div class="old-price"><p>$<%= product.product_price %></p></div>
+                                    <div class="price-promotion"><p>$<%= product.product_price_promotion %></p></div>
                                 <% } else { %>
-                                    <div class="price"><p>$<%= product.price %></p></div>
+                                    <div class="price"><p>$<%= product.product_price %></p></div>
                                 <% } %>
                             </div>
-                            <div class="soldItems"><p><%= product.soldItems %> items sold</p></div>
+                            <div class="soldItems"><p>5 items sold</p></div>
                         </div>
                     </div>
+                    <!-- end of product -->
                 </div>
             <% }); %>
         </div>
+        <!-- end of area 2 -->
     </section>
-    <%- include('../partials/navbarScript_backOffice')  %>
+    <!-- end of area 2 -->
 
-    <script>
-        const optionMenu = document.querySelector(".select-menu"),
-                selectBtn = optionMenu.querySelector(".select-btn"),
-                options = optionMenu.querySelectorAll(".option"),
-                sBtn_text = optionMenu.querySelector(".sBtn-text");
-    
-        selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-    
-        options.forEach(option =>{
-            option.addEventListener("click", ()=>{
-                let selectedOption = option.querySelector(".option-text").innerText;
-                sBtn_text.innerText = selectedOption;
-                optionMenu.classList.remove("active");
-            });
-        });
-    </script>
+    <script src="/controllers/back-office/header.js"></script>
+    <script src="/controllers/back-office/product.js"></script>
 </body>
 </html> 

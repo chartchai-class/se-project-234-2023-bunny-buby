@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/login_signUp.css">
+    <link rel="stylesheet" href="css/back-office/login_signUp.css">
 
     <style>
         p:nth-of-type(1) {
@@ -52,7 +52,7 @@
         <p><%= text %></p>
         <% forms.forEach((form) => { %>
             <div>
-                <input type="text" placeholder="   <%= form.topic%>">
+                <input type="text" placeholder="   <%= form.topic %>" name="<%= form.name %>">
             </div>
         <% }); %>
         <a href="" class="btn"><%= button%></a>

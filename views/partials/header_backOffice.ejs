@@ -1,0 +1,51 @@
+<div class="yellow-line"></div>
+<nav class="navbar navbar-expand-lg bg-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="myCategory"><img src="image/logo.png" alt="" class="logo-image"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link <%= currentPage === 'myCategory' ? '' : 'active' %>" aria-current="page" href="myCategory">My Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= currentPage === 'myProduct' ? '' : 'active' %>" aria-current="page" href="myProduct">My Product</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= currentPage === 'salesHistory' ? '' : 'active' %>" aria-current="page" href="billSummary">Sales History</a>
+                </li>
+
+                <div class="nav-divider"></div>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- Profile img -->
+                        <img src="image/profile.jpg" alt="Profile Image" class="profile-image">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <a href="myCategory" class="logo-icon-small"><img src="image/logo.png" alt="" class="logo-image-small"></a>
+        <a href="#" class="profile-icon"><img src="image/profile.jpg" alt="Profile Image" class="profile-image"></a>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleIcon = document.querySelector(".navbar-toggler");
+        const logoIconSmall = document.querySelector(".logo-icon-small");
+        const profileIcon = document.querySelector(".profile-icon");
+
+        toggleIcon.addEventListener("click", function () {
+            // Toggle the visibility of logo-icon-small and profile-icon
+            logoIconSmall.style.display = (logoIconSmall.style.display === "none") ? "flex" : "none";
+            profileIcon.style.display = (profileIcon.style.display === "none") ? "flex" : "none";
+        });
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

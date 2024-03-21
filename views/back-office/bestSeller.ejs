@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Seller</title>
+
+    <%- include('../partials/head_backOffice')  %>
+    <link rel="stylesheet" href="css/back-office/mainStyle.css">
+
+    <style>
+        .btn-area {
+            display: flex;
+            flex-direction: row ;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .area1 .btn1, .area1 .btn2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5vw;
+            text-decoration: none;
+            font-size: 2vw;
+            background-color: rgb(23, 23, 23);
+            color: white;
+            font-weight: 700;
+            width: 20vw;
+            height: 3.5vw;
+            border-radius: 0 0.5vw 0.5vw 0;
+            border: solid 0.2vw rgb(23, 23, 23);
+        }
+
+        .area1 .btn1 {
+            border-radius: 0.5vw 0 0 0.5vw;
+            background-color: white;
+            color: rgb(23, 23, 23);
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header_backOffice')  %>
+    <section id="container-fluid">
+        <div class="row area1">
+            <div class="col-lg-6 col-sm-12"><h1><%= article %></h1></div>
+            <div class="col-lg-6 col-sm-12 btn-area">
+                <a href="billSummary" class="btn1"><%= button1 %></a>
+                <a href="bestSeller" class="btn2"><%= button2 %></a>
+            </div>
+        </div>
+    </section>
+
+    <script src="/controllers/back-office/header.js"></script>
+</body>
+</html>
