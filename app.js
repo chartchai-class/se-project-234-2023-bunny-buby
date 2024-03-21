@@ -19,36 +19,18 @@ app.get("/WebStore/login", (req, res) => {
 
 app.get("/WebStore/product_detail", (req, res) => {
     // Dummy product data for testing
-    const products = [
-        {
-            name: "Product 1",
-            image: "/images/product1.jpg",
-            color: "Blue",
-            size: "Medium",
-            price: "19.99"
-        },
-        {
-            name: "Product 2",
-            image: "/images/product2.jpg",
-            color: "Red",
-            size: "Large",
-            price: "24.99",
-            discount: "5" // Example discount of $5
-        },
-        {
-            name: "Product 3",
-            image: "/images/product3.jpg",
-            color: "Red",
-            size: "Large",
-            price: "24.99"
-        }
+    const product = {
+        name: "Product 1",
+        image: "/images/product1.jpg",
+        color: "Blue",
+        size: "Medium",
+        price: "19.99",
+        discount: "5"
+    };
+    
+    res.render("WebStore/product_detail", { product });
+    
         // Add more product objects as needed
-    ];
-    const totalItems = products.length;
-    const totalPrice = products.reduce((total, product) => total + parseFloat(product.price), 0);
-
-    // Pass products, totalItems, and totalPrice to the view
-    res.render("WebStore/product_detail", { products, totalItems, totalPrice });
 });
 
 app.get("/WebStore/basket", (req, res) => {
