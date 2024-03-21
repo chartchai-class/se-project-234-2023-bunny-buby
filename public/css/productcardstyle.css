@@ -148,14 +148,22 @@ body {
     .discounted-price {
         color: red;
         font-size: 28px;
+        @media screen and (max-width: 767px){
+            font-size: 20px;
+        }
     }
     .original-price {
         color: #A6A6A6;
-        font-size: 20px;
+        font-size: 22px;
         position: absolute;
         right: 0;
         bottom: -25px;
         text-decoration: line-through;
+        @media screen and (max-width: 767px){
+            font-size: 16px;
+            bottom: -15px;
+        }
     }
+
 }
 

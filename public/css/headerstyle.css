@@ -34,9 +34,6 @@
 .navbar-nav {
     display: flex;
     align-items: center;
-    .acc-dropdown {
-        filter: none;
-    }
 }
 
 .navbar-nav img {
@@ -81,12 +78,64 @@
     top: 13px;
 }
 
-.dropdown-menu {
-    margin-left: -140px;
-    width: 250px;
+.dropdown{
+    position: relative;
 }
 
+.dropdown-menu {
+    position: absolute;
+    margin-left: -160px;
+    background-color: black;
+    width: 250px;
+    color: #fff;
 
+    #contentWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #header-account {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 5%;
+        .acc-detail {
+            color: #fff;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    }
+
+    #container-account{
+        margin-top: 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 18px;
+    }
+    #login-btn-account button {
+        background: #FFB000;
+        color: #fff;
+        font-weight: 800;
+        width: 200px;
+        border-radius: 20px;
+    }
+    #signup-account {
+        margin-top: 10px;
+    }
+    #signup-account a {
+        color: #fff;
+        font-size: 18px;
+    }
+
+}
+
+.dropdown.active > link + .dropdown-menu{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 
 .group-manage{
     display: none;
@@ -164,5 +213,22 @@
         font-family: "Catamaran", sans-serif;
         right: 3px;
     }
-    
+
+    .dropdown{
+        position: relative;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        right: 0;
+        left: unset !important;
+        margin: 0;
+        top: 80px !important;
+    }
+
+    .dropdown.active .dropdown-menu {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
 }

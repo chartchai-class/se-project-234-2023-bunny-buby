@@ -22,9 +22,28 @@
                     <img src="/image/basket.png" alt="" width="25">
                     <span class="basket-num-mb"></span>
                 </a>
-                <a class="accout-mb" href="">
+                <a class="accout-mb" href="#" id="data-dropdown-button" data-dropdown-button data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="/image/account.png" alt="" width="25">
+                    <div class="dropdown-menu">
+                        <div id="contentWrapper">
+                            <div id="header-account">
+                                <img class="acc-dropdown" src="/image/account.png" alt="" width="60">
+                                <div class="acc-detail">
+                                    Account name <br>
+                                    Email@gmail
+                                </div>
+                            </div>
+                            
+                            <div id="container-account">
+                                <a id="login-btn-account" href="/WebStore/login">
+                                    <button>Log In</button>
+                                </a>
+                                <p id="signup-account">No account? <a href="/signup">Sign up</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </a>
+
             </div>
         </div>
         
@@ -68,24 +87,25 @@
                         <span class="basket-num"></span>
                     </a>
                 </li>
-                <li class="nav-item dropdown account-icon">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item dropdown account-icon" data-dropdown>
+                    <a class="nav-link dropdown-toggle" data-dropdown-button href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="/image/account.png" alt="account" width="30">
                     </a>
                     <ul class="dropdown-menu">
                         <div id="contentWrapper">
                             <div id="header-account">
-                                <img class="acc-dropdown" src="/image/account.png" alt="" width="100">
-                                <div>
+                                <img class="acc-dropdown" src="/image/account.png" alt="" width="80">
+                                <div class="acc-detail">
                                     Account name <br>
                                     Email@gmail
                                 </div>
                             </div>
+                            
                             <div id="container-account">
                                 <a id="login-btn-account" href="/WebStore/login">
                                     <button>Log In</button>
                                 </a>
-                                <p>No account? <a href="/signup">Sing up</a></p>
+                                <p id="signup-account">No account? <a href="/signup">Sign up</a></p>
                             </div>
                         </div>
                     </ul>
@@ -97,23 +117,24 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    var mobileSearchInput = document.getElementById('mobileSearchInput');
-    var mobileSearchButton = document.getElementById('mobileSearchButton');
-    
-    if (mobileSearchButton && mobileSearchInput) {
-        // Mobile search button click event
-        mobileSearchButton.addEventListener('click', function(event) {
-            // Toggle the visibility of the search input
-            mobileSearchInput.style.display = mobileSearchInput.style.display === 'none' ? 'block' : 'none';
-            // Focus on the search input when it becomes visible
-            if (mobileSearchInput.style.display === 'block') {
-                mobileSearchInput.focus();
-            }
-            // Prevent default behavior (e.g., form submission)
-            event.preventDefault();
-        });
-    }
+        var mobileSearchInput = document.getElementById('mobileSearchInput');
+        var mobileSearchButton = document.getElementById('mobileSearchButton');
+        
+        if (mobileSearchButton && mobileSearchInput) {
+            // Mobile search button click event
+            mobileSearchButton.addEventListener('click', function(event) {
+                // Toggle the visibility of the search input
+                mobileSearchInput.style.display = mobileSearchInput.style.display === 'none' ? 'block' : 'none';
+                // Focus on the search input when it becomes visible
+                if (mobileSearchInput.style.display === 'block') {
+                    mobileSearchInput.focus();
+                }
+                // Prevent default behavior (e.g., form submission)
+                event.preventDefault();
+            });
+        }
     });
+
 
 
 </script>
