@@ -94,7 +94,7 @@ document.querySelectorAll('.delete-icon').forEach(function(button) {
         // Set up event listener for confirm button
         document.getElementById('deleteBtn-product').addEventListener('click', async function () {
             try {
-                const response = await fetch('/deleteProduct', {
+                const response = await fetch('/back-office/deleteProduct', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -104,7 +104,9 @@ document.querySelectorAll('.delete-icon').forEach(function(button) {
                 
                 if (response.ok) {
                     // Redirect to /myProduct after successful deletion
-                    window.location.href = '/myProduct';
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const categoryIdParam = urlParams.get('categoryId');
+                    window.location.href = `/back-office/myProduct?categoryId=${categoryIdParam}`;
                 } else {
                     alert('An error occurred while deleting the product. Please try again later.');
                 }
@@ -198,11 +200,29 @@ document.querySelectorAll('.option').forEach(option => {
     option.addEventListener('click', function() {
         const categoryId = this.getAttribute('data-category-id');
 
-        fetch(`/myProduct?categoryId=${categoryId}`)
+        fetch(`/back-office/myProduct?categoryId=${categoryId}`)
             .then(response => {
                 response.json();
-                window.location.href = `/myProduct?categoryId=${categoryId}`;
+                window.location.href = `/back-office/myProduct?categoryId=${categoryId}`;
             })
             .catch(error => console.error('Error:', error));
     });
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page content has been fully loaded.');
+    
+    // Check if the current URL contains a categoryId parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryIdParam = urlParams.get('categoryId');
+
+    if (categoryIdParam) {
+        document.getElementById('createProduct').style.display = 'flex';
+    } else {
+        document.querySelector('.article h1').innerHTML = 'All Products';
+        document.getElementById('createProduct').style.display = 'none';
+    }
 });

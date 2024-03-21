@@ -29,6 +29,16 @@ class ProductsModel extends BaseSQLModel {
       throw new Error("Error fetching products by category ID");
     }
   }
+
+  async getTotalProductByCategory(categoryId) {
+    const query = `SELECT category_id, COUNT(*) AS total_products 
+    FROM product 
+    WHERE category_id = ${categoryId} 
+    GROUP BY category_id`;
+    const totalProducts = await this.executeQuery(query)
+    const result = totalProducts.map((item) => item.total_products);
+    return result;
+  }
 }
 
 const ProductsDB = new ProductsModel();

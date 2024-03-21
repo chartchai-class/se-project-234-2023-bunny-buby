@@ -17,6 +17,47 @@ app.get('/back-office/welcome', (req, res) => {
     res.render('back-office/welcome');
 })
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.set('view engine', 'ejs');
+
+app.use(express.static("public"));
+app.use('/controllers', express.static('controllers'));
+
+// Database models
+const db = require("./config/db");
+const categories = require("./models/categoryModel");
+const products = require("./models/productModel");
+const sales = require("./models/salesModel");
+
+// Authentication
+const session = require("express-session");
+const mysqlStore = require("express-mysql-session")(session);
+
+// DB connection for storing session data
+const options = db.dbconfig;
+options.createDatabaseTable = true;
+const sessionStore = new mysqlStore(options);
+
+// Define session configuration for your server
+// app.use(session({
+//     store: sessionStore,
+//     secret: 'jklfsodifjsktnwjasdp465dd', // A secret key used to sign the session ID cookie
+//     resave: true, // Forces the session to be saved back to the session store
+//     saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
+//     cookie: {
+//         maxAge: 3600000, // Sets the cookie expiration time in milliseconds (1 hour here)
+//         sameSite: true,
+//         httpOnly: true, // Reduces client-side script control over the cookie
+//         secure: false // Ensures cookies are only sent over HTTPS 
+//         //we do not implementment HTTPS yet, so, this is false
+//     }
+// }))
+
+// const Authen = require("./controllers/authen");
+
 app.get('/back-office/login', (req, res) => {
     forms = [
         {topic: "Username"},
@@ -29,7 +70,7 @@ app.get('/back-office/login', (req, res) => {
         button: 'Log In'
     });
 })
-app.get('/signUp', (req, res) => {
+app.get('/back-office/signUp', (req, res) => {
     forms = [
         {topic: "Shop name"},
         {topic: "Username"},
@@ -44,7 +85,7 @@ app.get('/signUp', (req, res) => {
         button: 'Sign Up'
     });
 })
-app.get('/myCategory', async (req, res) => {
+app.get('/back-office/myCategory', async (req, res) => {
     try {
         const categoriesList = await categories.findAllByName();
 
@@ -76,25 +117,25 @@ app.get('/myCategory', async (req, res) => {
 //         await products.create({})
 //     }
 // })
-app.post('/addCategory', async (req, res) => {
+app.post('/back-office/addCategory', async (req, res) => {
     try {
         const categoryId = req.body.categoryId;
         const categoryName = req.body.categoryName;
 
         // Create new category in the database
         await categories.create({ category_id: categoryId, category_name: categoryName });
-        res.redirect("/myCategory");
+        res.redirect("/back-office/myCategory");
     } catch (error) {
         console.error('Error creating category:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-app.post("/deleteCategory", async (req, res) => {
+app.post("/back-office/deleteCategory", async (req, res) => {
     const categoryId = req.body.categoryId;
     console.log("deleting item with this id : " + categoryId);
     try {
         await categories.delete(categoryId);
-        res.redirect("/myCategory");
+        res.redirect("/back-office/myCategory");
     } catch (error) {
         console.error('Error deleting category:', error);
         res.status(400).json({ error: error.message });
@@ -102,7 +143,7 @@ app.post("/deleteCategory", async (req, res) => {
 });
 
 
-app.get('/myProduct', async (req, res) => {
+app.get('/back-office/myProduct', async (req, res) => {
     try {
         const categoryId = req.query.categoryId;
         
@@ -141,19 +182,19 @@ app.get('/myProduct', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-app.post("/deleteProduct", async (req, res) => {
+app.post("/back-office/deleteProduct", async (req, res) => {
     const productId = req.body.productId;
     console.log("deleting item with this id : " + productId);
     try {
         await products.delete(productId);
-        res.redirect("/myProduct");
+        res.redirect("/back-office/myProduct");
     } catch (error) {
         console.error('Error deleting product:', error);
         res.status(400).json({ error: error.message });
     }
 });
 
-app.get('/billSummary', async (req, res) => {
+app.get('/back-office/billSummary', async (req, res) => {
     try {
         const salesList = await sales.findAll();
 
@@ -170,7 +211,7 @@ app.get('/billSummary', async (req, res) => {
     }
 })
 
-app.get('/bestSeller', (req, res) => {
+app.get('/back-office/bestSeller', (req, res) => {
     res.render('back-office/bestSeller', { 
         currentPage: 'salesHistory' ,
         article: 'Bill Summary',
@@ -229,7 +270,7 @@ app.patch('/api/categories/update/:id', async (req, res) => {
     }
 });
 
-app.get('/myProduct/:cateId', async (req, res) => {
+app.get('/back-office/myProduct/:cateId', async (req, res) => {
     try {
         const categoryId = req.params.cateId; // Get the category ID from URL parameter
         const productsList = await products.findByCategoryId(categoryId); // Fetch products by category ID
@@ -336,9 +377,6 @@ app.get("/WebStore/basket", (req, res) => {
     // Pass products, totalItems, and totalPrice to the view
     res.render("WebStore/basket", { products, totalItems, totalPrice });
 });
-
-
-
 
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)

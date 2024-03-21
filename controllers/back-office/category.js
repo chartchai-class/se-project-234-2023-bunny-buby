@@ -54,7 +54,7 @@ document.querySelectorAll('.delete-icon').forEach(function (button) {
         document.getElementById('deleteBtn-category').addEventListener('click', async function () {
             try {
                 // Send POST request to backend for deletion
-                await fetch('/deleteCategory', {
+                await fetch('/back-office/deleteCategory', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -133,7 +133,7 @@ document.querySelectorAll('.done-icon').forEach((doneBtn) => {
 
             if (response.ok) {
                 // Handle successful response
-                window.location.href = "/myCategory"; // Redirect to '/myCategory'
+                window.location.href = "/back-office/myCategory"; // Redirect to '/myCategory'
             } else {
                 // Handle server-side errors
                 throw new Error('Server Error');
@@ -165,10 +165,10 @@ document.querySelectorAll('#categoryNameh3').forEach(function (categoryh3) {
     categoryh3.addEventListener('click', async function (event) {
         const categoryId = this.getAttribute('data-category-id');
 
-        fetch(`/myProduct?categoryId=${categoryId}`)
+        fetch(`/back-office/myProduct?categoryId=${categoryId}`)
             .then(response => {
                 response.json();
-                window.location.href = `/myProduct?categoryId=${categoryId}`;
+                window.location.href = `/back-office/myProduct?categoryId=${categoryId}`;
             })
             .catch(error => console.error('Error:', error));
     })

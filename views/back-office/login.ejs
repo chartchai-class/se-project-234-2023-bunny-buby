@@ -52,7 +52,7 @@
         <p><%= text %></p>
         <% forms.forEach((form) => { %>
             <div>
-                <input type="text" placeholder="   <%= form.topic%>">
+                <input type="text" placeholder="   <%= form.topic %>" name="<%= form.name %>">
             </div>
         <% }); %>
         <a href="" class="btn"><%= button%></a>
