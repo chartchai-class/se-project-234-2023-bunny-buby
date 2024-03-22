@@ -78,18 +78,18 @@ app.get('/back-office/signUp', (req, res) => {
 })
 app.get('/back-office/myCategory', async (req, res) => {
     try {
+        const catagoryId = req.body.catagoryId;
         const categoriesList = await categories.findAllByName();
+        const totalProduct = await products.countProductsInCategory(catagoryId)
 
         res.render('back-office/myCategory', {
             currentPage: 'myCategory',
             article: 'My Category',
             button: 'Create new category',
             btnID: 'createCategory',
-            categories: categoriesList
+            categories: categoriesList,
+            totalProduct: totalProduct
         });
-
-
-        console.log(categoriesList);
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

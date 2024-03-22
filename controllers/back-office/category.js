@@ -177,22 +177,16 @@ document.querySelectorAll('#categoryNameh3').forEach(function (categoryh3) {
 
 // show total products
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Page content has been fully loaded.');
-
-    // Function to fetch products data
-    function fetchProducts() {
-        // Assuming you fetch products data using AJAX or any other method
-        return fetch('/api/products')
-            .then(response => response.json())
-            .then(data => {
-                // Assuming data is an array of products
-                return data;
-            })
-            .catch(error => {
-                console.error('Error fetching products:', error);
-                return []; // Return empty array if there's an error
-            });
-    }
+    document.querySelectorAll('.totalProduct p').forEach(async function(totalProduct) {;
+        const categoryId = this.getAttribute('data-category-id');
+        await fetch('/back-office/myCategory', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ categoryId: categoryId })
+        });
+    });
 
     // Fetch products data
     fetchProducts()

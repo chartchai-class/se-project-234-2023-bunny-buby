@@ -75,6 +75,13 @@ class BaseSQLModel {
     const result = await this.executeQuery(query, [id]);
     return result.affectedRows;
   }
+
+  async countProductsInCategory(categoryId) {
+    const query = `SELECT COUNT(*) AS product_count FROM product WHERE category_id = ?`;
+    const result = await this.executeQuery(query, [categoryId]);
+    return result[0].product_count;
+  }
+
 }
 
 module.exports = BaseSQLModel;

@@ -186,7 +186,8 @@ body {
 
 .product-img img {
     width: 13vw;
-    height: auto;
+    height: 13vw;
+    margin-right: 2vw;
 }
 
 .price, .price-promotion {
