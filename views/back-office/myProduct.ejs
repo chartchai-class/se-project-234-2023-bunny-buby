@@ -1,316 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Product</title>
 
-    <%- include('../partials/head_backOffice')  %>
-    
-    <!--===== Boxicons CSS =====-->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <%- include('../partials/head_backOffice') %>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <!--===== Boxicons CSS =====-->
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="/css/back-office/mainStyle.css">
-    <link rel="stylesheet" href="/css/back-office/selectMenu.css">
-    <link rel="stylesheet" href="/css/back-office/create_form.css">
-    
-    <style>
-        .twoButton {
-            margin-top: 2vw;
-            display: flex;
-            justify-content: flex-end;
-        }
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .twoButton .btn {
-            padding: 1vw 3.5vw;
-            text-decoration: none;
-            font-size: 2vw;
-            background-color: black;
-            color: white;
-            font-weight: 700;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 2vw;
-        }
+        <link rel="stylesheet" href="/css/back-office/mainStyle.css">
+        <link rel="stylesheet" href="/css/back-office/selectMenu.css">
+        <link rel="stylesheet" href="/css/back-office/create_form.css">
 
-        .sBtn-text {
-            margin-left: 2vw;
-        }
-
-        @media (min-width: 768px) {
-            .row.same-line .col-lg-6 {
-                padding: 0;
-                margin: 0;
-            }
-
-            .row.same-line .col-lg-6  p{
-                margin-top: 0.8vw;
-                margin-bottom: 0.5vw;
-            }
-
+        <style>
             .twoButton {
+                margin-top: 2vw;
                 display: flex;
-                height: 3.5vw;
+                justify-content: flex-end;
             }
 
             .twoButton .btn {
-                position: relative;
-            }
-        }
-
-        @media only screen and (max-width: 767px) {
-            .twoButton {
-                margin-top: 3vw;
+                padding: 1vw 3.5vw;
+                text-decoration: none;
+                font-size: 2vw;
+                background-color: black;
+                color: white;
+                font-weight: 700;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                flex-direction: column;
-            }
-
-            .select-menu {
-                width: 100%;
+                margin-left: 2vw;
             }
 
             .sBtn-text {
-                margin-left: 4vw;
+                margin-left: 2vw;
             }
 
-            .select-menu .select-btn {
-                width: 100%;
-                height: 6vw;
-                padding: 1vw;
-                font-size: 4vw;
-                font-weight: 500;
-                border: solid 0.4vw grey;
-                border-radius: 1vw;
-                cursor: pointer;
-                position: relative;
+            @media (min-width: 768px) {
+                .row.same-line .col-lg-6 {
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .row.same-line .col-lg-6 p {
+                    margin-top: 0.8vw;
+                    margin-bottom: 0.5vw;
+                }
+
+                .twoButton {
+                    display: flex;
+                    height: 3.5vw;
+                }
+
+                .twoButton .btn {
+                    position: relative;
+                }
             }
 
-            .categoryBtn {
-                width: 100%;
-            }
+            @media only screen and (max-width: 767px) {
+                .twoButton {
+                    margin-top: 3vw;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    flex-direction: column;
+                }
 
-            .twoButton .btn {
-                margin-top: 5vw;
-                height: 7vw;
-                font-size: 3.8vw;
-                width: 100%;
-                height: auto;
-                margin-left: 0;
-            }
+                .select-menu {
+                    width: 100%;
+                }
 
-            .product h3 {
-                font-size: 5vw;
-            }
+                .sBtn-text {
+                    margin-left: 4vw;
+                }
 
-            .product-img img {
-                width: 30vw;
-            }
+                .select-menu .select-btn {
+                    width: 100%;
+                    height: 6vw;
+                    padding: 1vw;
+                    font-size: 4vw;
+                    font-weight: 500;
+                    border: solid 0.4vw grey;
+                    border-radius: 1vw;
+                    cursor: pointer;
+                    position: relative;
+                }
 
-            .product-sec2 {
-                font-size: 2.8vw;
-            }
+                .categoryBtn {
+                    width: 100%;
+                }
 
-            .row.same-line .col-lg-6  p{
-                margin-bottom: 0.5vw;
-            }
+                .twoButton .btn {
+                    margin-top: 5vw;
+                    height: 7vw;
+                    font-size: 3.8vw;
+                    width: 100%;
+                    height: auto;
+                    margin-left: 0;
+                }
 
-            .old-price, .soldItems p {
-                font-size: 3.4vw;
-            }
+                .product h3 {
+                    font-size: 5vw;
+                }
 
-            .price, .price-promotion {
-                font-size: 4vw;
+                .product-img img {
+                    width: 30vw;
+                }
+
+                .product-sec2 {
+                    font-size: 2.8vw;
+                }
+
+                .row.same-line .col-lg-6 p {
+                    margin-bottom: 0.5vw;
+                }
+
+                .old-price,
+                .soldItems p {
+                    font-size: 3.4vw;
+                }
+
+                .price,
+                .price-promotion {
+                    font-size: 4vw;
+                }
             }
-        }
-    </style>
+        </style>
 </head>
+
 <body>
     <%- include('../partials/header_backOffice') %>
 
-    <!-- create product -->
-    <div id="popupCreateForm" class="popup-product">
-        <form action="/back-office/myProduct" method="post">
-            <span class="close createProd"><img src="image/close-form.svg" alt=""></span>
-        <h3>Add a new product?</h3>
-        <!-- input -->
-        <p>Product ID</p>
-        <input id="productID" type="text" placeholder="" name="productId">
+        <!-- create product -->
+        <div id="popupCreateForm" class="popup-product">
+            <form action="/back-office/addProduct" method="post">
+                <span class="close createProd"><img src="/image/close-form.svg" alt=""></span>
+                <h3>Add a new product?</h3>
+                <!-- input -->
+                <p>Product ID</p>
+                <input id="productID" type="text" placeholder="" name="productId">
 
-        <p>Product name</p>
-        <input id="productName" type="text" placeholder="" name="productName">
-
-        <p>Description</p>
-        <input id="description" type="text" placeholder="" name="productDes">
-
-        <p>Image</p>
-        <div class="inputImg-area">
-            <input id="product-image" type="file" accept="image/*" name="productImage">
-            <label for="product-image">
-                <i class="fas fa-upload"></i>
-                &nbsp;Upload new image
-            </label>
-            <p class="img-file" id="img-file">No file chosen</p>
-        </div>
+                <p>Category ID</p>
+                <input id="categoryID" type="text" placeholder="" name="categoryId">
         
-        <p>Price</p>
-        <input id="price" type="text" placeholder="" name="productPrice">
-
-        <p>Sales count</p>
-        <input id="salesCount" type="text" placeholder="" name="productSalesCount">
-
-        <div class="cancel-deleteBtn">
-            <button id="cancelBtn-createProd">Cancel</button>
-            <button id="createBtn-product" type="submit">Create</button>
-        </div>
-        </form>
-    </div>
-    <!-- end of create product -->
-
-    <!-- delete product -->
-    <div id="popupDeleteForm" class="popup-product">
-        <span class="close deleteProd"><img src="/image/close-form.svg" alt=""></span>
-
-        <h3>Do you want to</h3>
-        <h3>delete the product?</h3>
+                <p>Product name</p>
+                <input id="productName" type="text" placeholder="" name="productName">
         
-        <img src="/image/home-products/nike.jpg" alt="" id="deletedProduct-img">
-        <label for="" id="productName-lbl">Name of Product</label>
+                <p>Description</p>
+                <input id="description" type="text" placeholder="" name="productDes">
         
-        <div class="cancel-deleteBtn">
-            <button id="cancelBtn-deleteProd">Cancel</button>
-            <button id="deleteBtn-product">Yes</button>
-        </div>
-    </div>
-    <!-- end of delete product -->
-
-    <!-- edit product -->
-    <div id="popupEditForm" class="popup-product">
-        <span class="close editProd"><img src="/image/close-form.svg" alt=""></span>
-        <h3>Edit the product?</h3>
-        <!-- input -->
-        <p>Product ID</p>
-        <input id="productID" type="text" placeholder="">
-
-        <p>Product name</p>
-        <input id="productName" type="text" placeholder="">
-
-        <p>Description</p>
-        <input id="description" type="text" placeholder="">
-
-        <p>Image</p>
-        <div class="inputImg-area">
-            <input id="product-image-edit" type="file" accept="image/*">
-            <label for="product-image-edit">
-                <i class="fas fa-upload"></i>
-                &nbsp;Upload new image
-            </label>
-            <p class="img-file" id="img-file-edit">No file chosen</p>
-        </div>
-        
-        <p>Price</p>
-        <input id="price" type="text" placeholder="">
-
-        <p>Sales count</p>
-        <input id="salesCount" type="text" placeholder="">
-
-        <div class="cancel-deleteBtn">
-            <button id="cancelBtn-editProd">Cancel</button>
-            <button id="editBtn-product">Edit</button>
-        </div>
-    </div>
-    <!-- edit of edit product -->
-
-    <div class="overlay" id="overlay"></div> <!-- overlay -->
-
-    <!-- content -->
-    <section id="container-fluid">
-        <!-- area 1 -->
-        <div class="row area1">
-            <div class="article"><h1>My Product ( <%= totalProducts %> )</h1></div>
-            <div class="twoButton">
-                <!-- select menu -->
-                <div class="select-menu">
-                    <div class="select-btn">
-                        <span class="sBtn-text">
-                            <% if (selectedCate[0]) { %>
-                                <%= selectedCate[0] %>
-                            <% } else { %>
-                                Choose category
-                            <% } %>
-                        </span>
-                        <i class="bx bx-chevron-down"></i>
-                    </div>
-                    <ul class="options">
-                        <% categories.forEach((category) => { %>
-                            <li class="option"  data-category-id="<%= category.category_id%>">
-                                <span class="option-text"><%=  category.category_name %></span>
-                            </li>
-                        <% }); %>
-                    </ul>
+                <p>Image</p>
+                <div class="inputImg-area">
+                    <input id="product-image" type="file" accept="image/*" name="productImage">
+                    <label for="product-image">
+                        <i class="fas fa-upload"></i>
+                        &nbsp;Upload new image
+                    </label>
+                    <p class="img-file" id="img-file">No file chosen</p>
                 </div>
-                <!-- create button -->
-                <div><a href="" class="btn" id="createProduct"><%= button %></a></div>
+        
+                <p>Price</p>
+                <input id="price" type="text" placeholder="" name="productPrice">
+        
+                <p>Sales count</p>
+                <input id="salesCount" type="text" placeholder="" name="productSalesCount">
+        
+                <div class="cancel-deleteBtn">
+                    <button id="cancelBtn-createProd">Cancel</button>
+                    <button id="createBtn-product" data-category-id="">Create</button>
+                </div>
+            </form>
+        </div>        
+        <!-- end of create product -->
+
+        <!-- delete product -->
+        <div id="popupDeleteForm" class="popup-product">
+            <span class="close deleteProd"><img src="/image/close-form.svg" alt=""></span>
+
+            <h3>Do you want to</h3>
+            <h3>delete the product?</h3>
+
+            <img src="/image/home-products/nike.jpg" alt="" id="deletedProduct-img">
+            <label for="" id="productName-lbl">Name of Product</label>
+
+            <div class="cancel-deleteBtn">
+                <button id="cancelBtn-deleteProd">Cancel</button>
+                <button id="deleteBtn-product">Yes</button>
             </div>
         </div>
-        <!-- end of area 1 -->
+        <!-- end of delete product -->
 
-        <!-- area 2 -->
-        <div class="row area2">
-            <% products.forEach((product) => { %>
-                <div class="col-lg-6 col-sm-12">
+        <!-- edit product -->
+        <div id="popupEditForm" class="popup-product">
+            <span class="close editProd"><img src="/image/close-form.svg" alt=""></span>
+            <h3>Edit the product?</h3>
+            <!-- input -->
+            <p>Product ID</p>
+            <input id="productID" type="text" placeholder="">
 
-                    <!-- product -->
-                    <div class="product" id="product_<%= product.product_id %>" data-product-id="<%= product.product_id %>">
-                        <!-- product section 1 -->
-                        <div class="product-sec1">
-                            <div class="icon">
-                                <div><a href="" class="delete-icon" id="deleteProduct" data-product-id="<%= product.product_id %>"><img src="/image/red-bin.svg" alt="red-bin"></a></div>
-                                <div><a href="" class="edit-icon" id="editProduct"><img src="/image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a></div>
-                            </div>
-                        </div>
+            <p>Product name</p>
+            <input id="productName" type="text" placeholder="">
 
-                        <!-- product section 2 -->
-                        <div class="product-sec2">
-                            <div class="product-img">
-                                <img src="<%= product.product_images %>" alt="product-image" id="product-img">
-                            </div>
-                            <div class="product-data">
-                                <h3><%= product.product_name %></h3>
-                                <div class="row same-line">
-                                    <div class="col-lg-6 col-sm-12"><p><b>ID of product:  </b><%= product.product_id %></p></div>
-                                    <div class="col-lg-6 col-sm-12"><p><b>ID of category:  </b><%= product.category_id %></p></div>
-                                </div>
-                                <p><b>Description:  </b> <%= product.product_description %></p>
-                            </div>
-                        </div>
+            <p>Description</p>
+            <input id="description" type="text" placeholder="">
 
-                        <!-- product section 3 -->
-                        <div class="product-sec3">
-                            <div class="price-section">
-                                <% if (product.product_sales_count) { %>
-                                    <div class="old-price"><p>$<%= product.product_price %></p></div>
-                                    <div class="price-promotion"><p>$<%= product.product_price_promotion %></p></div>
-                                <% } else { %>
-                                    <div class="price"><p>$<%= product.product_price %></p></div>
-                                <% } %>
-                            </div>
-                            <div class="soldItems"><p>5 items sold</p></div>
-                        </div>
-                    </div>
-                    <!-- end of product -->
-                </div>
-            <% }); %>
+            <p>Image</p>
+            <div class="inputImg-area">
+                <input id="product-image-edit" type="file" accept="image/*">
+                <label for="product-image-edit">
+                    <i class="fas fa-upload"></i>
+                    &nbsp;Upload new image
+                </label>
+                <p class="img-file" id="img-file-edit">No file chosen</p>
+            </div>
+
+            <p>Price</p>
+            <input id="price" type="text" placeholder="">
+
+            <p>Sales count</p>
+            <input id="salesCount" type="text" placeholder="">
+
+            <div class="cancel-deleteBtn">
+                <button id="cancelBtn-editProd">Cancel</button>
+                <button id="editBtn-product">Edit</button>
+            </div>
         </div>
-        <!-- end of area 2 -->
-    </section>
-    <!-- end of area 2 -->
+        <!-- edit of edit product -->
 
-    <script src="/controllers/back-office/header.js"></script>
-    <script src="/controllers/back-office/product.js"></script>
+        <div class="overlay" id="overlay"></div> <!-- overlay -->
+
+        <!-- content -->
+        <section id="container-fluid">
+            <!-- area 1 -->
+            <div class="row area1">
+                <div class="article">
+                    <h1>My Product ( <%= totalProducts %> )</h1>
+                </div>
+                <div class="twoButton">
+                    <!-- select menu -->
+                    <div class="select-menu">
+                        <div class="select-btn">
+                            <span class="sBtn-text">
+                                <% if (selectedCate[0]) { %>
+                                    <%= selectedCate[0] %>
+                                        <% } else { %>
+                                            Choose category
+                                            <% } %>
+                            </span>
+                            <i class="bx bx-chevron-down"></i>
+                        </div>
+                        <ul class="options">
+                            <% categories.forEach((category)=> { %>
+                                <li class="option" data-category-id="<%= category.category_id%>">
+                                    <span class="option-text">
+                                        <%= category.category_name %>
+                                    </span>
+                                </li>
+                                <% }); %>
+                        </ul>
+                    </div>
+                    <!-- create button -->
+                    <div><a href="" class="btn" id="createProduct">
+                            <%= button %>
+                        </a></div>
+                </div>
+            </div>
+            <!-- end of area 1 -->
+
+            <!-- area 2 -->
+            <div class="row area2">
+                <% products.forEach((product)=> { %>
+                    <div class="col-lg-6 col-sm-12">
+
+                        <!-- product -->
+                        <div class="product" id="product_<%= product.product_id %>"
+                            data-product-id="<%= product.product_id %>">
+                            <!-- product section 1 -->
+                            <div class="product-sec1">
+                                <div class="icon">
+                                    <div><a href="" class="delete-icon" id="deleteProduct"
+                                            data-product-id="<%= product.product_id %>"><img src="/image/red-bin.svg"
+                                                alt="red-bin"></a></div>
+                                    <div><a href="" class="edit-icon" id="editProduct"><img
+                                                src="/image/edit_back-office.svg" alt="SVG Image" class="svg-image"></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- product section 2 -->
+                            <div class="product-sec2">
+                                <div class="product-img">
+                                    <img src="<%= product.product_images %>" alt="product-image" id="product-img">
+                                </div>
+                                <div class="product-data">
+                                    <h3>
+                                        <%= product.product_name %>
+                                    </h3>
+                                    <div class="row same-line">
+                                        <div class="col-lg-6 col-sm-12">
+                                            <p><b>ID of product: </b>
+                                                <%= product.product_id %>
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                            <p><b>ID of category: </b>
+                                                <%= product.category_id %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p><b>Description: </b>
+                                        <%= product.product_description %>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- product section 3 -->
+                            <div class="product-sec3">
+                                <div class="price-section">
+                                    <% if (product.product_sales_count) { %>
+                                        <div class="old-price">
+                                            <p>$<%= product.product_price %>
+                                            </p>
+                                        </div>
+                                        <div class="price-promotion">
+                                            <p>$<%= product.product_price_promotion %>
+                                            </p>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="price">
+                                                <p>$<%= product.product_price %>
+                                                </p>
+                                            </div>
+                                            <% } %>
+                                </div>
+                                <div class="soldItems">
+                                    <p>5 items sold</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of product -->
+                    </div>
+                    <% }); %>
+            </div>
+            <!-- end of area 2 -->
+        </section>
+        <!-- end of area 2 -->
+
+        <script src="/controllers/back-office/header.js"></script>
+        <script src="/controllers/back-office/product.js"></script>
 </body>
-</html> 
+
+</html>

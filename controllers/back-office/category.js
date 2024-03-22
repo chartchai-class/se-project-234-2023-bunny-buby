@@ -173,3 +173,38 @@ document.querySelectorAll('#categoryNameh3').forEach(function (categoryh3) {
             .catch(error => console.error('Error:', error));
     })
 });
+
+
+// show total products
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Page content has been fully loaded.');
+
+    // Function to fetch products data
+    function fetchProducts() {
+        // Assuming you fetch products data using AJAX or any other method
+        return fetch('/api/products')
+            .then(response => response.json())
+            .then(data => {
+                // Assuming data is an array of products
+                return data;
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+                return []; // Return empty array if there's an error
+            });
+    }
+
+    // Fetch products data
+    fetchProducts()
+    .then(products => {
+        // Loop through each totalProduct element
+        document.querySelectorAll('.totalProduct p').forEach(function(totalProduct) {
+            const categoryId = totalProduct.getAttribute('data-category-id');
+            // Calculate total products for the current category
+            const total = products.filter(product => product.category_id === categoryId).length;
+            // Update the total number of products for the category
+            totalProduct.innerHTML = `Total: ${total}`;
+        });
+    });
+});
+

@@ -10,6 +10,8 @@ app.use(express.static("public"));
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.json());
+
 
 // Database models
 const db = require("./config/db");
@@ -49,8 +51,8 @@ app.get('/back-office/welcome', (req, res) => {
 
 app.get('/back-office/login', (req, res) => {
     forms = [
-        {topic: "Username"},
-        {topic: "Password"}
+        { topic: "Username" },
+        { topic: "Password" }
     ]
 
     res.render('back-office/login', {
@@ -61,11 +63,11 @@ app.get('/back-office/login', (req, res) => {
 })
 app.get('/back-office/signUp', (req, res) => {
     forms = [
-        {topic: "Shop name"},
-        {topic: "Username"},
-        {topic: "Email"},
-        {topic: "Password"},
-        {topic: "Confirm password"}
+        { topic: "Shop name" },
+        { topic: "Username" },
+        { topic: "Email" },
+        { topic: "Password" },
+        { topic: "Confirm password" }
     ]
 
     res.render('back-office/signUp', {
@@ -78,8 +80,8 @@ app.get('/back-office/myCategory', async (req, res) => {
     try {
         const categoriesList = await categories.findAllByName();
 
-        res.render('back-office/myCategory', { 
-            currentPage: 'myCategory' ,
+        res.render('back-office/myCategory', {
+            currentPage: 'myCategory',
             article: 'My Category',
             button: 'Create new category',
             btnID: 'createCategory',
@@ -93,19 +95,32 @@ app.get('/back-office/myCategory', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-// app.post('/addProduct', async (req, res) => {
-//     try {
-//         const productId = req.body.productId;
-//         const productName = req.body.productName;
-//         const productDes = req.body.productDes;
-//         const productImage = req.body.productImage;
-//         const productPrice = req.body.productPrice;
-//         const productSalesCount = req.body.productSalesCount;
+app.post('/back-office/addProduct', async (req, res) => {
+    try {
+        const productId = req.body.productId;
+        const categoryId = req.body.categoryId;
+        const productName = req.body.productName;
+        const productDes = req.body.productDes;
+        const productImage = req.body.productImage;
+        const productPrice = req.body.productPrice;
+        const productSalesCount = req.body.productSalesCount;
 
-//         // Create new product in the database
-//         await products.create({})
-//     }
-// })
+        // Create new product in the database
+        await products.create({
+            product_id: productId,
+            category_id: categoryId,
+            product_name: productName,
+            product_description: productDes,
+            product_images: productImage,
+            product_price: productPrice,
+            product_sales_count: productSalesCount
+        });
+        res.redirect(`/back-office/myProduct?categoryId=${categoryId}`);
+    } catch (error) {
+        console.error('Error creating category:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 app.post('/back-office/addCategory', async (req, res) => {
     try {
         const categoryId = req.body.categoryId;
@@ -135,42 +150,47 @@ app.post("/back-office/deleteCategory", async (req, res) => {
 app.get('/back-office/myProduct', async (req, res) => {
     try {
         const categoryId = req.query.categoryId;
-        
+
         const selectedCate = await products.getCategoryName(categoryId);
 
         let productsList;
+        let totalProducts
         if (categoryId) {
             productsList = await products.findByCategoryId(categoryId);
+            totalProducts = await products.getTotalProductByCategory(categoryId);
         } else {
             productsList = await products.findAllByProductSalesCount();
+            totalProducts = '';
         }
 
         const categoriesList = await categories.findAll();
 
         creating = [
-            {input: 'Product ID', id: 'productID'},
-            {input: 'Product name', id: 'productName'},
-            {input: 'Description', id: 'description'},
-            {input: 'Image', id: 'product-image'},
-            {input: 'Price', id: 'price'},
-            {input: 'Sales count', id: 'salesCount'}
+            { input: 'Product ID', id: 'productID' },
+            { input: 'Product name', id: 'productName' },
+            { input: 'Description', id: 'description' },
+            { input: 'Image', id: 'product-image' },
+            { input: 'Price', id: 'price' },
+            { input: 'Sales count', id: 'salesCount' }
         ]
 
-        res.render('back-office/myProduct', { 
-            currentPage: 'myProduct' ,
+        res.render('back-office/myProduct', {
+            currentPage: 'myProduct',
             article: 'My Product',
             button: 'Create new product',
             btnID: 'createProduct',
             products: productsList,
             creating: creating,
             categories: categoriesList,
-            selectedCate: selectedCate
+            selectedCate: selectedCate,
+            totalProducts: totalProducts
         });
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
     }
 });
+
 app.post("/back-office/deleteProduct", async (req, res) => {
     const productId = req.body.productId;
     console.log("deleting item with this id : " + productId);
@@ -187,8 +207,8 @@ app.get('/back-office/billSummary', async (req, res) => {
     try {
         const salesList = await sales.findAll();
 
-        res.render('back-office/billSummary', { 
-            currentPage: 'salesHistory' ,
+        res.render('back-office/billSummary', {
+            currentPage: 'salesHistory',
             article: 'Bill Summary',
             button1: 'Bill summary',
             button2: 'Best seller',
@@ -201,8 +221,8 @@ app.get('/back-office/billSummary', async (req, res) => {
 })
 
 app.get('/back-office/bestSeller', (req, res) => {
-    res.render('back-office/bestSeller', { 
-        currentPage: 'salesHistory' ,
+    res.render('back-office/bestSeller', {
+        currentPage: 'salesHistory',
         article: 'Bill Summary',
         button1: 'Bill summary',
         button2: 'Best seller'
@@ -243,7 +263,7 @@ app.get('/api/sales', async (req, res) => {
 app.patch('/api/categories/update/:id', async (req, res) => {
     const id = req.params.id;
     const newId = req.body.newId;
-    const newName = req.body.newName; 
+    const newName = req.body.newName;
 
     const newData = {
         id: newId,

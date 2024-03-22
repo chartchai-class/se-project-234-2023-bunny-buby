@@ -1,40 +1,70 @@
 /*      CREATE     */
 // Open the pop-up form
-document.getElementById('createProduct').addEventListener('click', function(event) {
+document.getElementById('createProduct').addEventListener('click', function (event) {
     event.preventDefault(); // Prevent the default behavior of the anchor tag
     document.getElementById('popupCreateForm').classList.add('active');
     document.getElementById('overlay').style.display = 'block'; // Show the overlay
 });
 
 // Close the pop-up form
-document.querySelector('.close.createProd').addEventListener('click', function() {
+document.querySelector('.close.createProd').addEventListener('click', function () {
     document.getElementById('popupCreateForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 
 // Cancel button action
-document.getElementById('cancelBtn-createProd').addEventListener('click', function() {
+document.getElementById('cancelBtn-createProd').addEventListener('click', function () {
     document.getElementById('popupCreateForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 
 // Create button action (Add your functionality here)
-document.getElementById('createBtn-product').addEventListener('click', function() {
-    alert('Create product button clicked!');
+document.getElementById('createProduct').addEventListener('click', async function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryIdParam = urlParams.get('categoryId');
+    this.getAttribute('name') = categoryIdParam;
+
+    document.getElementById('createBtn-product').addEventListener('click', async function() {
+        try {
+            // Send POST request to backend for deletion
+            await fetch('/back-office/addProduct', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ categoryId: categoryIdParam, productId: productId, productName: productName
+                    , productDes: productDes, productImage: productImage, productPrice, productSalesCount, btn: 'createBtn-product' })
+            });
+    
+            if (response.ok) {
+                // Redirect to /myProduct after successful deletion
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryIdParam = urlParams.get('categoryId');
+                window.location.href = `/back-office/myProduct?categoryId=${categoryIdParam}`;
+            } else {
+                alert('An error occurred while deleting the product. Please try again later.');
+            }
+        } catch (error) {
+            // Handle network errors or other exceptions
+            console.error('Error deleting category:', error);
+            // Display an error message to the user
+            alert('An error occurred while deleting the category. Please try again later.');
+        }
+    })
 });
 
 // Function to reset the created form
 const optionMenu = document.querySelector(".select-menu"),
-        selectBtn = optionMenu.querySelector(".select-btn"),
-        options = optionMenu.querySelectorAll(".option"),
-        sBtn_text = optionMenu.querySelector(".sBtn-text");
-    
+    selectBtn = optionMenu.querySelector(".select-btn"),
+    options = optionMenu.querySelectorAll(".option"),
+    sBtn_text = optionMenu.querySelector(".sBtn-text");
+
 selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-    
+
 options.forEach(option => {
-    option.addEventListener("click", ()=>{
+    option.addEventListener("click", () => {
         let selectedOption = option.querySelector(".option-text").innerText;
         sBtn_text.innerText = selectedOption;
         optionMenu.classList.remove("active");
@@ -42,9 +72,9 @@ options.forEach(option => {
 });
 
 // File upload
-    let inputFile = document.getElementById('product-image');
-    let fileNameField = document.getElementById('img-file');
-    inputFile.addEventListener('change', function(event) {
+let inputFile = document.getElementById('product-image');
+let fileNameField = document.getElementById('img-file');
+inputFile.addEventListener('change', function (event) {
     if (inputFile.value) {
         const filename = inputFile.files[0].name;
         fileNameField.innerHTML = filename;
@@ -72,7 +102,7 @@ function resetForm() {
 /*      DELETE     */
 // Open the pop-up delete product form
 // Add event listeners to all delete buttons for products
-document.querySelectorAll('.delete-icon').forEach(function(button) {
+document.querySelectorAll('.delete-icon').forEach(function (button) {
     button.addEventListener('click', async function (event) {
         event.preventDefault();
         const productId = this.getAttribute('data-product-id');
@@ -101,12 +131,16 @@ document.querySelectorAll('.delete-icon').forEach(function(button) {
                     },
                     body: JSON.stringify({ productId: productId, btn: 'deleteBtn-product' })
                 });
-                
+
                 if (response.ok) {
                     // Redirect to /myProduct after successful deletion
                     const urlParams = new URLSearchParams(window.location.search);
                     const categoryIdParam = urlParams.get('categoryId');
-                    window.location.href = `/back-office/myProduct?categoryId=${categoryIdParam}`;
+                    if (categoryIdParam) {
+                        window.location.href = `/back-office/myProduct?categoryId=${categoryIdParam}`;
+                    } else {
+                        window.location.href = '/back-office/myProduct';
+                    }
                 } else {
                     alert('An error occurred while deleting the product. Please try again later.');
                 }
@@ -124,53 +158,53 @@ document.querySelectorAll('.delete-icon').forEach(function(button) {
     });
 });
 // Close the pop-up form
-document.querySelector('.close.deleteProd').addEventListener('click', function() {
+document.querySelector('.close.deleteProd').addEventListener('click', function () {
     document.getElementById('popupDeleteForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 // Cancel button action
-document.getElementById('cancelBtn-deleteProd').addEventListener('click', function() {
+document.getElementById('cancelBtn-deleteProd').addEventListener('click', function () {
     document.getElementById('popupDeleteForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 // Delete button action
-document.getElementById('deleteBtn-product').addEventListener('click', function() {
+document.getElementById('deleteBtn-product').addEventListener('click', function () {
     document.getElementById('popupEditForm')
 });
 
 
 
 /*      EDIT     */
-document.querySelectorAll('#editProduct').forEach(function(button) {
-    button.addEventListener('click', function(event) {
+document.querySelectorAll('#editProduct').forEach(function (button) {
+    button.addEventListener('click', function (event) {
         event.preventDefault();
         document.getElementById('popupEditForm').classList.add('active');
-        document.getElementById('overlay').style.display = 'block'; 
+        document.getElementById('overlay').style.display = 'block';
     });
 });
 // Close the pop-up form
-document.querySelector('.close.editProd').addEventListener('click', function() {
+document.querySelector('.close.editProd').addEventListener('click', function () {
     document.getElementById('popupEditForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 // Cancel button action
-document.getElementById('cancelBtn-editProd').addEventListener('click', function() {
+document.getElementById('cancelBtn-editProd').addEventListener('click', function () {
     document.getElementById('popupEditForm').classList.remove('active');
     resetForm();
     document.getElementById('overlay').style.display = 'none'; // Hide the overlay
 });
 // Edit button action
-document.getElementById('editBtn-product').addEventListener('click', function() {
+document.getElementById('editBtn-product').addEventListener('click', function () {
     alert('Edit product button clicked!');
 });
 
 // File upload
 let inputEditFile = document.getElementById('product-image-edit');
 let fileNameFieldEdit = document.getElementById('img-file-edit');
-inputEditFile.addEventListener('change', function(event) {
+inputEditFile.addEventListener('change', function (event) {
     if (inputEditFile.value) {
         const filename = inputEditFile.files[0].name;
         fileNameFieldEdit.innerHTML = filename;
@@ -197,7 +231,7 @@ function resetForm() {
 /*   CHOOSE CATEGORY   */
 // Add an event listener to the category options
 document.querySelectorAll('.option').forEach(option => {
-    option.addEventListener('click', function() {
+    option.addEventListener('click', function () {
         const categoryId = this.getAttribute('data-category-id');
 
         fetch(`/back-office/myProduct?categoryId=${categoryId}`)
@@ -212,9 +246,9 @@ document.querySelectorAll('.option').forEach(option => {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Page content has been fully loaded.');
-    
+
     // Check if the current URL contains a categoryId parameter
     const urlParams = new URLSearchParams(window.location.search);
     const categoryIdParam = urlParams.get('categoryId');

@@ -74,7 +74,7 @@
                 <% categories.forEach((category)=> { %>
                     <div class="col-lg-6 col-sm-12">
                         <!-- category -->
-                        <div class="category" id="category_<%= category.category_id %>">
+                        <div class="category" id="category_<%= category.category_id %>" data-category-id="<%= category.category_id %>">
                             <!-- category section 1 -->
                             <div class="category-sec1">
                                 <h3 id="categoryNameh3" data-category-id="<%= category.category_id %>">
@@ -100,8 +100,8 @@
                                 <div>
                                     <p>Products</p>
                                 </div>
-                                <div class="totalProduct">
-                                    <p>Total: 5</p>
+                                <div class="totalProduct" data-category-id="<%= category.category_id %>">
+                                    <p>Total: </p>
                                 </div>
                             </div>
                         </div>
