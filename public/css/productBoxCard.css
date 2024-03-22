@@ -1,36 +1,35 @@
-/* products section */
-.product-box-container {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(10rem, 1fr));
-    gap: 1.5rem;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    @media screen and (max-width: 600px) {
-      grid-template-columns: repeat(2, minmax(10rem, 1fr));
-      padding-left: 30px;
-      padding-right: 30px;
-    }
-  }
-  
   .product-box-card {
-    
     background: #fff;
     border: 1px solid rgba(0, 0, 0, .2);
     width: 300px;
     height: 300px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* display: flex; 
-  justify-content: center; 
-  align-items: center;  */
-
+    @media screen and (max-width: 600px) {
+      width: 180px;
+      height: 230px;
+    }
   }
 
   .product-box-card img {
-    max-width: 100%; /* ให้ภาพไม่เกินขอบเขตของพ่องเว็บ  */
-    max-height: 100%; /* ให้ภาพไม่เกินขอบเขตของพ่องเว็บ */
-    object-fit: contain; /* ทำให้ภาพอยู่ในกล่องโดยไม่ถูกยืดหรือหด */
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: fill; 
   }
+  .product-box-card a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-box-card img {
+    width: 250px;
+    height: 200px;
+    @media screen and (max-width: 600px) {
+      width: 150px;
+      height: 100px;
+    }
 
+  }
   .product-box {
     background: #fff;
     border: .1rem solid rgba(0, 0, 0, .2);
@@ -38,6 +37,7 @@
     position: relative;
     overflow: hidden;
     text-align: center;
+
   }
   
   .product-box img {
@@ -56,20 +56,46 @@
     justify-content: space-between;
     margin: 0 20px 30px 20px;
   }
-  
-  .product-tile-category {
-    color: gray;
+
+  .product-tile-title {
+    font-size: 18px;
+    font-weight: 500;
+    @media screen and (max-width: 600px) {
+      font-size: 18px;
+    }
   }
   
-  .product-tile-price-new {
+  .discounted-price {
     color: red;
+    font-size: 20px;
+    font-weight: 500;
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
+    }
   }
   
-  .product-tile-price-old {
+  .original-price {
     color: gray;
+    font-size: 16px;
+    font-weight: 300;
     text-decoration: line-through;
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+    }
   }
   
-  .product-tile-price-standard {
+  .product-price {
     color: black;
+    font-size: 20px;
+    font-weight: 500;
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
+    }
   }
+
+  .product-box-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+  

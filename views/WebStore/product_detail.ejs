@@ -101,7 +101,7 @@ body {
     box-shadow: 2px 2px 2px #A6A6A6;
     width: 50px;
     height: 50px;
-    font-size: 20px;
+    font-size: 16px;
     @media screen and (max-width: 600px){
         width: 60px;
         height: 60px;
@@ -160,6 +160,47 @@ body {
     margin-top: 20px;
 }
 
+.selected {
+    background-color: #000;
+    color: #fff;
+}
+
+.modal-body {
+    text-align: center;
+    font-size: 20px;
+}
+
+.modal-footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#continueshop {
+    background-color: #FFB000 !important;
+    color: #fff !important;
+    border-color: #FFB000 !important;
+    width: 180px !important;
+    height: 40px !important;
+}
+
+#continueshop:hover {
+    background-color: #d58e24 !important;
+    border-color: #d58e24 !important;
+}
+
+#go-basket {
+    background-color: #0d6efd !important;
+    color: #fff !important;
+    border-color: #0d6efd !important;
+    
+}
+
+#go-basket:hover {
+    background-color: #0b5ed7 !important;
+    border-color: #0a58ca !important;
+}
+
   
 </style>
 
@@ -172,47 +213,46 @@ body {
         <div class="grid-product-detail-container">
 
             <div class="grid-product-image">
-                <div class="grid-image item1"> <img src="/image/product-detail/puma.png" alt="p1"></div>
+                <div class="grid-image item1"> <img src="<%= product.product_images %>" alt="<%= product.product_images %>"></div>
             </div>
             <div class="grid-product-info">
                 <div class="product-name">
-                    <%= product.name %>
+                    <%= product.product_name %>
                 </div>
                 <hr>
                 <div class="product-price">
-                    <% if (product.discount) { %>
+                    <% if (product.product_sales_count) { %>
                         <div class="discount-version">
                             <div class="discounted-price">
-                                $<%= (parseFloat(product.price) - product.discount).toFixed(2) %>
+                                $<%= product.product_price_promotion %>
                             </div>
                             <div class="original-price">
-                                $<%= product.price %>
+                                $<%= product.product_price %>
                             </div>
                             <div class="percent-off">
-                                $<%= product.price %> OFF
+                                <%= product.product_sales_count %> % OFF
                             </div>
                         </div>
                         
                     <% } else { %>
                         <div class="product-price">
-                            $<%= product.price %>
+                            $<%= product.product_price %>
                         </div>
                     <% } %>
                 </div>
-                <hr class="mb-only">
+                <hr >
                 <div class="product-size">
                     <div class="size-topic">Size</div>
-                        <div class="product-size-container">
-                            <button class="size-list">1</button>
-                            <button class="size-list">2</button>
-                            <button class="size-list">3</button>
-                            <button class="size-list">4</button>
-                            <button class="size-list">5</button>
-                            <button class="size-list">6</button>
-                            <button class="size-list">7</button>
-                            <button class="size-list">8</button>
-                        </div>
-                        
+                    <div class="product-size-container" id="sizeContainer">
+                        <button class="size-list" onclick="selectSize(this)">UK 1</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 2</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 3</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 4</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 5</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 6</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 7</button>
+                        <button class="size-list" onclick="selectSize(this)">UK 8</button>
+                    </div>
                 </div>
 
                 <div id="productSelection">
@@ -225,14 +265,27 @@ body {
                         <option value="5">5</option>
                         <!-- Add more options as needed -->
                     </select>
+                    <div class="modal" id="addedModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    Product added to cart.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" id="continueshop" data-bs-dismiss="modal">Continue Shopping</button>
+                                    <a href="/WebStore/basket" class="btn btn-primary" id="go-basket">Go to Basket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <button id="toCart-btn" onclick="addToCart()">Add to Cart</button>
                 </div>
 
                 <hr>
                 <div class="product-describtion">
                     <div class="des-topic">Describtion</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi eius nemo deserunt nobis facere earum sunt eos dolorem,
-                         assumenda adipisci labore minus temporibus iusto, harum culpa unde perferendis cum distinctio!</p>
+                    <p><%= product.product_description %></p>
                 </div>
             </div>
         </div>
@@ -240,7 +293,25 @@ body {
 
     <%- include('../partials/footer_front'); %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        function selectSize(button) {
+            // Remove 'selected' class from all buttons
+            var buttons = document.querySelectorAll('.size-list');
+            buttons.forEach(btn => {
+                btn.classList.remove('selected');
+            });
+    
+            // Add 'selected' class to the clicked button
+            button.classList.add('selected');
+        }
 
+        function addToCart() {
+        // Show the modal
+        var addedModal = new bootstrap.Modal(document.getElementById('addedModal'));
+        addedModal.show();
+        }
+
+    </script>
 
 </body>
 </html>

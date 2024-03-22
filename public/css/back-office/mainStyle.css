@@ -287,4 +287,8 @@ body {
         height: 5vw; /* Adjust edit and delete icon size for smaller screens */
         width: 5vw; /* Adjust edit and delete icon size for smaller screens */
     }
+
+    .category-sec3 .totalProduct p {
+        font-size: 2.5vw;
+    }
 }

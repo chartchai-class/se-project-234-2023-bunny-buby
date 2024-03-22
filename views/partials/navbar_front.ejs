@@ -56,18 +56,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/WebStore/Category/allproduct">All</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/WebStore/Category/men">Men</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/WebStore/Category/women">Women</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/WebStore/Category/kids">Kids</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/WebStore/Category/accessories">Accessories</a>
-                </li>
+                <% categoriesList.forEach((category) => { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/WebStore/Category/<%= category.category_name %>"><%= category.category_name %></a>
+                    </li>
+                <% }); %>
             </ul>
             <!-- Icons for search, basket, and account -->
             <ul class="navbar-nav rightside">
@@ -134,7 +127,4 @@
             });
         }
     });
-
-
-
 </script>

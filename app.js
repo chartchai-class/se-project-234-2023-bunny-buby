@@ -23,27 +23,6 @@ const sales = require("./models/salesModel");
 const session = require("express-session");
 const mysqlStore = require("express-mysql-session")(session);
 
-// DB connection for storing session data
-// const options = db.dbconfig;
-// options.createDatabaseTable = true;
-// const sessionStore = new mysqlStore(options);
-
-// Define session configuration for your server
-// app.use(session({
-//     store: sessionStore,
-//     secret: 'jklfsodifjsktnwjasdp465dd', // A secret key used to sign the session ID cookie
-//     resave: true, // Forces the session to be saved back to the session store
-//     saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
-//     cookie: {
-//         maxAge: 3600000, // Sets the cookie expiration time in milliseconds (1 hour here)
-//         sameSite: true,
-//         httpOnly: true, // Reduces client-side script control over the cookie
-//         secure: false // Ensures cookies are only sent over HTTPS 
-//         //we do not implementment HTTPS yet, so, this is false
-//     }
-// }))
-
-// const Authen = require("./controllers/authen");
 
 app.get('/back-office/welcome', (req, res) => {
     res.render('back-office/welcome');
@@ -223,7 +202,7 @@ app.get('/back-office/billSummary', async (req, res) => {
 app.get('/back-office/bestSeller', (req, res) => {
     res.render('back-office/bestSeller', {
         currentPage: 'salesHistory',
-        article: 'Bill Summary',
+        article: 'Best Seller',
         button1: 'Bill summary',
         button2: 'Best seller'
     });
@@ -279,6 +258,17 @@ app.patch('/api/categories/update/:id', async (req, res) => {
     }
 });
 
+app.get('/api/WebStore/Category/Women/:productId', async (req, res) => {
+    try {
+        const productId = req.params.productId; // Get the category ID from URL parameter
+        const product = await products.findById(productId); 
+        res.json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 app.get('/back-office/myProduct/:cateId', async (req, res) => {
     try {
         const categoryId = req.params.cateId; // Get the category ID from URL parameter
@@ -307,36 +297,76 @@ app.get('/back-office/myProduct/:cateId', async (req, res) => {
     }
 });
 
-app.get("/", (req, res) => {
-    res.render("WebStore/product_detail");
+app.get("/", async (req, res) => {
+
+    try {
+        const productsList = await products.findAlllimit();
+        const categoriesList = await categories.findAll();
+        console.log(categoriesList)
+
+        res.render("WebStore/home", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }  
 })
 
-app.get("/WebStore/home", (req, res) => {
-    res.render("WebStore/home");
+app.get("/WebStore/home", async (req, res) => {
+    try {
+        const categoriesList = await categories.findAll();
+        const productsList = await products.findAlllimit();
+
+        res.render("WebStore/home", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }  
 });
 
-app.get("/WebStore/login", (req, res) => {
-    res.render("WebStore/login");
+app.get("/WebStore/Category/allproduct", async (req, res) => {
+    try {
+        const categoriesList = await categories.findAll();
+        const productsList = await products.findAll();
+
+
+        res.render("WebStore/Category/allproduct", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }  
 });
 
-app.get("/WebStore/product_detail", (req, res) => {
+app.get("/WebStore/login", async (req, res) => {
+    const categoriesList = await categories.findAll();
+    res.render("WebStore/login" , {categoriesList});
+
+});
+
+app.get("/WebStore/product_detail", async (req, res) => {
     // Dummy product data for testing
-    const product = {
-        name: "Product 1",
-        image: "/images/product1.jpg",
-        color: "Blue",
-        size: "Medium",
-        price: "19.99",
-        discount: "5"
-    };
-    
-    res.render("WebStore/product_detail", { product });
-    
-        // Add more product objects as needed
+    try {
+        const categoriesList = await categories.findAll();
+        const productId = req.query.productId;
+        const product = await products.findById(productId, 'product_id');
+        res.render("WebStore/product_detail", { product: product, categoriesList: categoriesList });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
-app.get("/WebStore/basket", (req, res) => {
+app.get("/WebStore/basket", async (req, res) => {
     // Dummy product data for testing
+    const categoriesList = await categories.findAll();
     const products = [
         {
             name: "Product 1",
@@ -366,41 +396,93 @@ app.get("/WebStore/basket", (req, res) => {
     const totalPrice = products.reduce((total, product) => total + parseFloat(product.price), 0);
 
     // Pass products, totalItems, and totalPrice to the view
-    res.render("WebStore/basket", { products, totalItems, totalPrice });
+    res.render("WebStore/basket", { products, totalItems, totalPrice, categoriesList});
 });
 
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)
 });
 
-app.get("/WebStore/checkout", (req, res) => {
-    res.render("WebStore/checkout");
+app.get("/WebStore/checkout", async (req, res) => {
+    const categoriesList = await categories.findAll();
+    res.render("WebStore/checkout" , {categoriesList});
 });
 
-app.get("/signup", (req, res) => {
-    res.render("WebStore/signup");
+app.get("/signup", async (req, res) => {
+    const categoriesList = await categories.findAll();
+    res.render("WebStore/signup" , {categoriesList});
 });
 
-app.get("/WebStore/contact", (req, res) => {
-    res.render("WebStore/contact");
+app.get("/WebStore/contact", async (req, res) => {
+    const categoriesList = await categories.findAll();
+    res.render("WebStore/contact" , {categoriesList});
 });
 
 app.get("/WebStore/Category/allproduct", (req, res) => {
     res.render("WebStore/Category/allproduct");
 });
 
-app.get("/WebStore/Category/men", (req, res) => {
-    res.render("WebStore/Category/men");
+app.get("/WebStore/Category/Men", async (req, res) => {
+    try {
+        const categoriesList = await categories.findAll();
+        const productsList = await products.findByCategoryId(111);
+
+
+        res.render("WebStore/Category/men", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    } 
 });
 
-app.get("/WebStore/Category/women", (req, res) => {
-    res.render("WebStore/Category/women");
+app.get("/WebStore/Category/Women", async (req, res) => {
+    try {
+        const categoriesList = await categories.findAll();
+        const productsList = await products.findByCategoryId(112);
+
+
+        res.render("WebStore/Category/women", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    } 
 });
 
-app.get("/WebStore/Category/kids", (req, res) => {
-    res.render("WebStore/Category/kids");
+app.get("/WebStore/Category/kids", async (req, res) => {
+    try {
+        const categoriesList = await categories.findAll();
+        const productsList = await products.findByCategoryId(115);
+
+
+        res.render("WebStore/Category/kids", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    } 
+    // res.render("WebStore/Category/kids");
 });
 
-app.get("/WebStore/Category/accessories", (req, res) => {
-    res.render("WebStore/Category/accessories");
+app.get("/WebStore/Category/accessories", async (req, res) => {
+    try {
+        const categoriesList = await categories.findAll();
+        const productsList = await products.findByCategoryId(114);
+
+
+        res.render("WebStore/Category/accessories", {
+            products: productsList,
+            categoriesList: categoriesList
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    } 
 });

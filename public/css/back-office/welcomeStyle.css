@@ -88,7 +88,7 @@ body, html {
     }
     #content_section .btn {
         padding: 0.5vw 4vw; /* Adjust padding for smaller screens */
-        width: 12vw;
+        width: 15vw;
         font-size: 3.5vw; /* Adjust font size for smaller screens */
     }
     #content_section p:nth-of-type(2) {

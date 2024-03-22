@@ -23,6 +23,13 @@ class BaseSQLModel {
     return results;
   }
 
+  async findAlllimit() {
+    const query = `SELECT * FROM ${this.tableName} LIMIT 4`;
+    const results = await this.executeQuery(query);
+    return results;
+}
+
+
   async findAllByName() {
     const query = `SELECT * FROM ${this.tableName} ORDER BY ${this.tableName}_name`;
     const results = await this.executeQuery(query);

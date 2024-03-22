@@ -66,8 +66,8 @@
                 .twoButton {
                     margin-top: 3vw;
                     display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-between;
+                    justify-content: center;
+                    align-items: space-between;
                     flex-direction: column;
                 }
 
@@ -147,13 +147,13 @@
 
                 <p>Category ID</p>
                 <input id="categoryID" type="text" placeholder="" name="categoryId">
-        
+
                 <p>Product name</p>
                 <input id="productName" type="text" placeholder="" name="productName">
-        
+
                 <p>Description</p>
                 <input id="description" type="text" placeholder="" name="productDes">
-        
+
                 <p>Image</p>
                 <div class="inputImg-area">
                     <input id="product-image" type="file" accept="image/*" name="productImage">
@@ -163,19 +163,19 @@
                     </label>
                     <p class="img-file" id="img-file">No file chosen</p>
                 </div>
-        
+
                 <p>Price</p>
                 <input id="price" type="text" placeholder="" name="productPrice">
-        
+
                 <p>Sales count</p>
                 <input id="salesCount" type="text" placeholder="" name="productSalesCount">
-        
+
                 <div class="cancel-deleteBtn">
                     <button id="cancelBtn-createProd">Cancel</button>
-                    <button id="createBtn-product" data-category-id="">Create</button>
+                    <button id="createBtn-product" type="submit">Create</button>
                 </div>
             </form>
-        </div>        
+        </div>
         <!-- end of create product -->
 
         <!-- delete product -->

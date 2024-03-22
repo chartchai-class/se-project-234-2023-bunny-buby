@@ -1,29 +1,35 @@
 <!-- productBox.ejs -->
 <link rel="stylesheet" href="/css/productBoxCard.css">
 
-
-<div class="product-box-card">
-
-    <a href="#"><img src="/image/home-products/nike.jpg" alt="product1"></a>
+<% products.forEach((product)=> { %>
+<div class="product-box-card" data-product-id="<%= product.product_id %>">
+  
+    <a href="#"><img src="<%= product.product_images %>" alt="<%= product.product_images %>" width="250px" height="200px"></a>
     <div class="product-tile-container">
       <div class="product-tile-info-text">
         <div class="product-tile-title">
-          <h4>Nike...</h4>
-        </div>
-        <div class="product-tile-category">
-          <h4>Shoes</h4>
+          <%= product.product_name %>
         </div>
       </div>
       <!-- gap -->
       <div class="product-tile-price">
-        <div class="product-tile-price-new">
-          <h4>$150</h4>
-        </div>
-        <div class="product-tile-price-old">
-          <h4>$200</h4>
-        </div>
+        <% if (product.product_price_promotion) { %>
+          <div class="discount-version">
+              <div class="discounted-price">
+                  $<%= product.product_price_promotion %>
+              </div>
+              <div class="original-price">
+                  $<%= product.product_price %>
+              </div>
+          </div>
+          
+        <% } else { %>
+            <div class="product-price">
+                $<%= product.product_price %>
+            </div>
+        <% } %>
       </div>
     </div>
-
+    
 </div>
-  
+<% }); %>

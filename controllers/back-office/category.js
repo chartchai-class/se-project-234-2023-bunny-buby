@@ -187,18 +187,5 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify({ categoryId: categoryId })
         });
     });
-
-    // Fetch products data
-    fetchProducts()
-    .then(products => {
-        // Loop through each totalProduct element
-        document.querySelectorAll('.totalProduct p').forEach(function(totalProduct) {
-            const categoryId = totalProduct.getAttribute('data-category-id');
-            // Calculate total products for the current category
-            const total = products.filter(product => product.category_id === categoryId).length;
-            // Update the total number of products for the category
-            totalProduct.innerHTML = `Total: ${total}`;
-        });
-    });
 });
 
