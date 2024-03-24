@@ -7,19 +7,25 @@ jobs:
     steps:
       - name: check out the code to build server
         uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2.2.4
-        with:
-          version: 7
-          run_install: false
-      - name: Use Node.js 18.x
+      
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 18.19.1
           cache: 'pnpm'
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2.2.4
+
+      - name: Install dependencies and generate lock file
+        run: |
+          pnpm install
+          pnpm install --frozen-lockfile
+
       - name: build the code
         run: |
-          pnpm install --no-frozen-lockfile
           pnpm build
+
       - name: copy file to server
         uses: appleboy/scp-action@master
         with:
