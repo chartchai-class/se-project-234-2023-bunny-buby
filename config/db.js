@@ -7,6 +7,8 @@ let config = {
     database: process.env.DB_NAME
 };
 
+console.log(config)
+
 let connection = {}
 function connect() {
     connection.mysql = mysql.createConnection(config);
