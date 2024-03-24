@@ -1,10 +1,10 @@
 const mysql = require("mysql2");
 
 let config = {
-    host: "localhost",
-    user: "root",
-    password: "@Q0968910466q",
-    database: "sport_project"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 };
 
 module.exports = mysql.createConnection(config) 

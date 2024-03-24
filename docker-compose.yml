@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  frontend:
+    image: kiehlz/bb-frontend
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      
+    volumes:
+      - ./sql:/var/lib/mysql
+
