@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>amout of product</name>
+   <tag></tag>
+   <elementGuidId>3bb0e3c2-5a07-4800-a064-035ad19ab569</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//select[@id='productQuantity']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>#productQuantity</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <smartLocatorCollection>
+      <entry>
+         <key>SMART_LOCATOR</key>
+         <value>#productQuantity</value>
+      </entry>
+   </smartLocatorCollection>
+   <smartLocatorEnabled>false</smartLocatorEnabled>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>select</value>
+      <webElementGuid>816835bb-429b-4d9b-830d-2eca0b213c18</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>id</name>
+      <type>Main</type>
+      <value>productQuantity</value>
+      <webElementGuid>66fc549f-d458-4ac0-9c04-c6b83d225292</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>
+                        1
+                        2
+                        3
+                        4
+                        5
+                        
+                    </value>
+      <webElementGuid>5b22c5be-73e9-4fbd-b58a-cd288600baf3</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;productQuantity&quot;)</value>
+      <webElementGuid>8c1dbb4c-4596-490a-bd0c-f4b9c373c6ec</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//select[@id='productQuantity']</value>
+      <webElementGuid>a9b3b7eb-b7cf-468b-8176-ddbe99efbbb9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='productSelection']/select</value>
+      <webElementGuid>7def610f-0b5f-49f5-8f70-53c17965f6ed</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='UK 8'])[1]/following::select[1]</value>
+      <webElementGuid>74f914cb-57d5-4711-a38e-ad3f4e95ec0b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='UK 7'])[1]/following::select[1]</value>
+      <webElementGuid>781ee444-f222-4a22-a1e5-cd9eeb393477</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Product added to cart.'])[1]/preceding::select[1]</value>
+      <webElementGuid>f26c578e-c773-48b2-a9c3-f5683c9af9a5</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Continue Shopping'])[1]/preceding::select[1]</value>
+      <webElementGuid>5b9058c6-1347-4760-a8ff-c7838a069b37</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//select</value>
+      <webElementGuid>e7df0b1b-0486-4db5-866d-5fbec0bfa3b4</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//select[@id = 'productQuantity' and (text() = '
+                        1
+                        2
+                        3
+                        4
+                        5
+                        
+                    ' or . = '
+                        1
+                        2
+                        3
+                        4
+                        5
+                        
+                    ')]</value>
+      <webElementGuid>9dec4ac8-0c74-481f-a680-57c3feff4bde</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
