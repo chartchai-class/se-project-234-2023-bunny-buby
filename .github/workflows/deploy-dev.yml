@@ -1,4 +1,4 @@
-name: Deploy Prod
+name: Deploy Dev
  
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - dev
  
 jobs:
-  deploy-prod:
+  deploy-dev:
     runs-on: ubuntu-latest
  
     env:
