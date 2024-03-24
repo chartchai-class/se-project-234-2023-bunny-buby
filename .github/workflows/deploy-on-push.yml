@@ -14,6 +14,6 @@ jobs:
           username: ${{secrets.SSH_USER_NAME}}
           port: ${{secrets.SSH_PORT}}
           key: ${{secrets.SSH_KEY}}
-          source: "./*"
+          source: "./se-project-234-2023-bunny-buby/**"
           target: "/var/www/html"
           strip_components: 1
