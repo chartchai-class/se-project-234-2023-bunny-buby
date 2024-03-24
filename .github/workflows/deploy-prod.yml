@@ -1,0 +1,62 @@
+name: Deploy Prod
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+ 
+    env:
+      HOST: ${{ secrets.SSH_HOST_PROD }}
+      ROOT_PATH: /home/ubuntu/bb
+ 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+ 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+ 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+ 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+ 
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: kiehlz/bb-frontend:latest
+ 
+      - name: Copy Configs via ssh
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: 'docker-compose-prod.yml'
+          target: '${{ env.ROOT_PATH }}'
+ 
+      - name: Run Command In Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ${{ env.ROOT_PATH }}
+            mv docker-compose-prod.yml docker-compose.yml
+            echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            docker compose down
+            docker compose pull frontend
+            docker compose up -d

@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:20
 
 WORKDIR /app
 
@@ -6,7 +6,7 @@ COPY package*.json /app/
 
 RUN npm ci
 
-COPY . ./
+COPY . ./app
 
 EXPOSE 8010
 

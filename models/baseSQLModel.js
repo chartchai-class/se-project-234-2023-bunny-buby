@@ -7,7 +7,7 @@ class BaseSQLModel {
 
   executeQuery(query, params) {
     return new Promise((resolve, reject) => {
-      pool.query(query, params, (error, results) => {
+      pool.mysql.query(query, params, (error, results) => {
         if (error) {
           reject(error);
         } else {

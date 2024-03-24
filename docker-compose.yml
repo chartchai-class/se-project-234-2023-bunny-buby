@@ -1,13 +1,25 @@
-version: '3.3'
+networks:
+  bunnybuby-network
 services:
   frontend:
-    image: kiehlz/bb-frontend
-  db:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    restart: unless-stopped
+    image: kiehlz/bb-frontend:latest
+    ports:
+      - "80:8010"
+    networks:
+      - bunnybuby-network
     environment:
-      
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+  db:
+    image: mysql:8.0
+    restart: unless-stopped      
+    ports:
+      - "3306:3306"
     volumes:
-      - ./sql:/var/lib/mysql
-
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
