@@ -6,7 +6,7 @@ COPY package*.json /app/
 
 RUN npm ci
 
-COPY . ./app
+COPY . /app
 
 EXPOSE 8010
 
