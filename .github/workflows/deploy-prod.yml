@@ -34,7 +34,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: kiehlz/bb-frontend:latest
+          tags: kiehlz/bb-frontend-prod:latest
  
       - name: Copy Configs via ssh
         uses: appleboy/scp-action@v0.1.7
